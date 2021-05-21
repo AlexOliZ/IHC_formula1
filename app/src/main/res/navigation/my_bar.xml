@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/my_bar"
+    app:startDestination="@id/schedule">
+
+    <fragment
+        android:id="@+id/schedule"
+        android:name="com.example.formula1.Schedule"
+        android:label="fragment_schedule"
+        tools:layout="@layout/fragment_schedule" />
+    <fragment
+        android:id="@+id/statistics"
+        android:name="com.example.formula1.Statistics"
+        android:label="fragment_statistics"
+        tools:layout="@layout/fragment_statistics" />
+    <fragment
+        android:id="@+id/forum"
+        android:name="com.example.formula1.Forum"
+        android:label="fragment_forum"
+        tools:layout="@layout/fragment_forum" />
+    <fragment
+        android:id="@+id/settings"
+        android:name="com.example.formula1.Settings"
+        android:label="fragment_settings"
+        tools:layout="@layout/fragment_settings" />
+    <fragment
+        android:id="@+id/pilots"
+        android:name="com.example.formula1.Pilots"
+        android:label="fragment_pilots"
+        tools:layout="@layout/fragment_teams" />
+</navigation>
