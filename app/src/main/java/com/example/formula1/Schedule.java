@@ -1,64 +1,65 @@
 package com.example.formula1;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
+import android.widget.ListView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Schedule#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 public class Schedule extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Schedule() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Schedule.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Schedule newInstance(String param1, String param2) {
-        Schedule fragment = new Schedule();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    private List<Race> allRaces(){
+        return new ArrayList<>(Arrays.asList(new Race("Portimão","Portugal","First Race in Portugal",1,1,2021,14,10),
+                new Race("Monaco","Monaco","The Classic Race of Monaco!",1,2,2021,14,12),
+                new Race("Monza","Italy","RIP Ferrari",1,1,2021,14,9),
+                new Race("Imola","Italy","First race Since 1988",1,3,2021,14,12),
+                new Race("Spa","Belgium","One of the best races in the calendar",1,4,2021,14,10)));
     }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        /*
+        super.onCreate(savedInstanceState);
+        setContentView(R.layout.fragment_schedule);
+
+        ListView schedule = (ListView)findViewById(R.id.race_schedule);
+
+        List<Race> races = allRaces();
+
+        MyAdapter adapter = new MyAdapter(races,this);
+        schedule.setAdapter(adapter);
+        */
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule, container, false);
+        View view = inflater.inflate(R.layout.fragment_schedule,container,false);
+        //super.onCreate(savedInstanceState);
+        //setContentView(R.layout.fragment_schedule);
+
+        ListView schedule = (ListView)view.findViewById(R.id.race_schedule);
+
+        List<Race> races = allRaces();
+
+        MyAdapter adapter = new MyAdapter(races,getActivity());
+        schedule.setAdapter(adapter);
+        return view;
     }
+
+
 }

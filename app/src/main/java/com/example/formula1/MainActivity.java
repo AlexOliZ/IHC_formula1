@@ -5,7 +5,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentContainerView;
 
+import android.content.Context;
 import android.os.Bundle;
+import android.view.LayoutInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -21,6 +23,7 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,new Schedule()).commit();
+        setSupportActionBar(findViewById(R.id.toolbar));
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =

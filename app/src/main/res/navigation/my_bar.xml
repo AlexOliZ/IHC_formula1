@@ -27,7 +27,7 @@
         tools:layout="@layout/fragment_settings" />
     <fragment
         android:id="@+id/pilots"
-        android:name="com.example.formula1.Pilots"
+        android:name="com.example.formula1.Teams"
         android:label="fragment_pilots"
         tools:layout="@layout/fragment_teams" />
 </navigation>
