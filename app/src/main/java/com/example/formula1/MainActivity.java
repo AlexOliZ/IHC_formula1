@@ -12,6 +12,13 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+/*
+    TO DO:
+        adicionar maneira de filtrar na toolbar
+        adicionar on click listener no MyAdapter
+        adicionar on click listener na checkBox nas notificações
+*/
+
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
     @Override

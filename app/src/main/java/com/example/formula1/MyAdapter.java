@@ -46,10 +46,18 @@ public class MyAdapter extends BaseAdapter {
         //View race_row = layoutInflater.inflate(R.layout.race_row, parent);
         View race_row = activity.getLayoutInflater().inflate(R.layout.race_row, parent, false);
 
+        parent.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                // ir para uma nova pagina com a info da corrida , resultados ...
+
+            }
+        });
 
         ImageView image = race_row.findViewById(R.id.race_image);
         TextView name = (TextView)race_row.findViewById(R.id.race_name);
         TextView date = (TextView)race_row.findViewById(R.id.race_date);
+
 
 
         image.setImageResource(races.get(position).getImage());

@@ -57,7 +57,11 @@ public class Schedule extends Fragment {
         List<Race> races = allRaces();
 
         MyAdapter adapter = new MyAdapter(races,getActivity());
+
         schedule.setAdapter(adapter);
+
+
+
         return view;
     }
 
