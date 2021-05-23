@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -60,7 +61,23 @@ public class Schedule extends Fragment {
 
         schedule.setAdapter(adapter);
 
+        EditText search_race = (EditText) view.findViewById(R.id.search_race);
+        search_race.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                search_race.setText("");
+            }
 
+        });
+
+        EditText search_year = (EditText) view.findViewById(R.id.search_year);
+        search_race.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                search_year.setText("");
+            }
+
+        });
 
         return view;
     }

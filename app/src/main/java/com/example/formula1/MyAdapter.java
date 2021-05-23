@@ -45,7 +45,7 @@ public class MyAdapter extends BaseAdapter {
         //LayoutInflater layoutInflater = inflater.inflate(R.layout.fragment_schedule, parent, false);
         //View race_row = layoutInflater.inflate(R.layout.race_row, parent);
         View race_row = activity.getLayoutInflater().inflate(R.layout.race_row, parent, false);
-
+        /*
         parent.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -53,7 +53,7 @@ public class MyAdapter extends BaseAdapter {
 
             }
         });
-
+        */
         ImageView image = race_row.findViewById(R.id.race_image);
         TextView name = (TextView)race_row.findViewById(R.id.race_name);
         TextView date = (TextView)race_row.findViewById(R.id.race_date);
