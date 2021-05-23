@@ -21,14 +21,9 @@ import java.util.List;
 
 
 public class Schedule extends Fragment {
+    private int year = 2021;
+    private String race = "Search Race";
 
-    private List<Race> allRaces(){
-        return new ArrayList<>(Arrays.asList(new Race("Portimão","Portugal","First Race in Portugal",1,1,2021,14,10),
-                new Race("Monaco","Monaco","The Classic Race of Monaco!",1,2,2021,14,12),
-                new Race("Monza","Italy","RIP Ferrari",1,1,2021,14,9),
-                new Race("Imola","Italy","First race Since 1988",1,3,2021,14,12),
-                new Race("Spa","Belgium","One of the best races in the calendar",1,4,2021,14,10)));
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +50,7 @@ public class Schedule extends Fragment {
 
         ListView schedule = (ListView)view.findViewById(R.id.race_schedule);
 
-        List<Race> races = allRaces();
+        List<Race> races = new Championship(this.year).getRaces();
 
         MyAdapter adapter = new MyAdapter(races,getActivity());
 
@@ -65,7 +60,9 @@ public class Schedule extends Fragment {
         search_race.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                search_race.setText("");
+                race = search_race.getText().toString();
+                search_race.setText(race);
+                System.out.println(race);
             }
 
         });
@@ -74,10 +71,13 @@ public class Schedule extends Fragment {
         search_race.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                search_year.setText("");
+                year = Integer.parseInt(search_year.getText().toString());
+                search_race.setText(year);
+                System.out.println(year);
             }
 
         });
+
 
         return view;
     }

@@ -12,6 +12,10 @@ import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 /*
     TO DO:
         adicionar maneira de filtrar na toolbar
@@ -21,6 +25,13 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
+    /*public static List<Race>  races = new ArrayList<>(Arrays.asList(new Race("Portimão","Portugal","First Race in Portugal",1,1,2021,14,10),
+                                    new Race("Monaco","Monaco","The Classic Race of Monaco!",1,2,2021,14,12),
+                                    new Race("Monza","Italy","RIP Ferrari",1,1,2021,14,9),
+                                    new Race("Imola","Italy","First race Since 1988",1,3,2021,14,12),
+                                    new Race("Spa","Belgium","One of the best races in the calendar",1,4,2021,14,10)));
+    */
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

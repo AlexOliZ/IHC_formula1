@@ -5,33 +5,34 @@
     android:layout_height="wrap_content"
     android:background="#FF0000"
     android:elevation="4dp"
-    android:paddingEnd="40dp"
-    android:paddingStart="30dp"
+    android:paddingEnd="20dp"
     android:theme="@style/ThemeOverlay.AppCompat.Dark.ActionBar">
+    
     <EditText
         android:id="@+id/search_year"
-        android:layout_width="75dp"
+        android:layout_width="100dp"
         android:layout_height="35dp"
         android:layout_gravity="left"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_rounded"
-        android:paddingStart="15dp"
-        android:text="YEAR"
-        android:textColor="#666666"
+        android:hint="search year"
+        android:textColorHint="#666666"
+        android:textColor="#000000"
         android:paddingLeft="5dp" />
 
     <EditText
         android:id="@+id/search_race"
-        android:layout_width="150dp"
+        android:layout_width="175dp"
         android:layout_height="35dp"
-        android:layout_gravity="center"
+        android:layout_gravity="center_horizontal"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
         android:background="@drawable/bg_rounded"
         android:paddingStart="5dp"
-        android:text="search race here"
-        android:textColor="#666666"
+        android:hint="search race here"
+        android:textColorHint="#666666"
+        android:textColor="#000000"
         android:paddingLeft="5dp" />
 
     <TextView
@@ -47,5 +48,14 @@
         android:paddingTop="3dp"
         android:textStyle="bold"
         android:text="0"/>
+    <ImageButton
+        android:id="@+id/imgbtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="right"
+        android:background="@android:color/transparent"
+        android:src="@drawable/toolbar_notification"/>
+
+
 
 </androidx.appcompat.widget.Toolbar>
