@@ -2,19 +2,24 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/schedule_list"
+    android:id="@+id/fragment_schedule"
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <include
-        android:id="@+id/toolbar"
-        layout="@layout/toolbar"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="-1dp" />
-
     <ListView
         android:id="@+id/race_schedule"
-        android:layout_marginTop="56dp"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_width="match_parent"/>
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/search_menu"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#DD1515"
+        app:layout_constraintTop_toTopOf="@+id/race_schedule"
+        app:menu="@menu/toolbar_search"
+        />
+
+
 </androidx.constraintlayout.widget.ConstraintLayout>

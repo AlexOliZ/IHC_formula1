@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentContainerView;
 import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -25,12 +27,6 @@ import java.util.List;
 
 public class MainActivity extends AppCompatActivity {
     private BottomNavigationView bottomNavigationView;
-    /*public static List<Race>  races = new ArrayList<>(Arrays.asList(new Race("Portimão","Portugal","First Race in Portugal",1,1,2021,14,10),
-                                    new Race("Monaco","Monaco","The Classic Race of Monaco!",1,2,2021,14,12),
-                                    new Race("Monza","Italy","RIP Ferrari",1,1,2021,14,9),
-                                    new Race("Imola","Italy","First race Since 1988",1,3,2021,14,12),
-                                    new Race("Spa","Belgium","One of the best races in the calendar",1,4,2021,14,10)));
-    */
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,7 +37,9 @@ public class MainActivity extends AppCompatActivity {
         bottomNavigationView.setOnNavigationItemSelectedListener(navigationListener);
 
         getSupportFragmentManager().beginTransaction().replace(R.id.fragmentContainerView,new Schedule()).commit();
-        setSupportActionBar(findViewById(R.id.toolbar));
+
+        //setSupportActionBar(findViewById(R.id.toolbar));
+
     }
 
     private BottomNavigationView.OnNavigationItemSelectedListener navigationListener =
@@ -70,5 +68,10 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         };
+
+        public boolean onCreateOptionsMenu(Menu menu){
+            getMenuInflater().inflate(R.menu.toolbar_search,menu);
+            return true;
+        }
 
 }

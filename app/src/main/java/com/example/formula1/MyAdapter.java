@@ -58,7 +58,8 @@ public class MyAdapter extends BaseAdapter {
         TextView name = (TextView)race_row.findViewById(R.id.race_name);
         TextView date = (TextView)race_row.findViewById(R.id.race_date);
 
-
+        // se tiver no mesmo dia que a corrida
+        // mostrar um timer com o tempo que falta para a corrida
 
         image.setImageResource(races.get(position).getImage());
         name.setText(races.get(position).getName());
