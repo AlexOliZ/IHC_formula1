@@ -40,6 +40,7 @@ public class Schedule extends Fragment {
     private SearchView search_year;
     private ListView schedule;
     private View view;
+    private MyAdapter adapter;
     private Context context;
 
     private List<Championship> allChampionships() {
@@ -57,9 +58,9 @@ public class Schedule extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
-        setHasOptionsMenu(true);
         super.onCreate(savedInstanceState);
-        context = getActivity();
+        setHasOptionsMenu(true);
+        //context = getActivity();
     }
 
     @Override
@@ -102,7 +103,6 @@ public class Schedule extends Fragment {
 
         inflater.inflate(R.menu.toolbar_search, menu);
         super.onCreateOptionsMenu(menu, inflater);
-
         //super.onCreateOptionsMenu(menu, inflater);
 
 
@@ -115,12 +115,23 @@ public class Schedule extends Fragment {
         notifications_item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
 
 
-
         search_race = (SearchView) search_race_item.getActionView();
+        search_race.setMaxWidth(Integer.MAX_VALUE);
         search_race.setQueryHint("Search");
         search_race.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
             @Override
             public boolean onQueryTextSubmit(String query) {
+                ArrayList<Race> filter_race = new ArrayList<Race>();
+
+                for(Race race: races){
+                    if(race.getName().toLowerCase().contains(query.toLowerCase())){
+                        filter_race.add(race);
+                    }
+                }
+
+                MyAdapter adapter = new MyAdapter(races,getActivity());
+                schedule.setAdapter(adapter);
+
                 return false;
             }
 
@@ -158,9 +169,6 @@ public class Schedule extends Fragment {
                         filter_championship.add(championship);
                     }
                 }
-
-                MyAdapter adapter = new MyAdapter(races,getActivity());
-                schedule.setAdapter(adapter);
 
                 return false;
             }

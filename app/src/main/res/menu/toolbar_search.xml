@@ -7,13 +7,15 @@
     <item android:id="@+id/search_race"
         android:title="Search Race"
         android:icon="@drawable/ic_search_black_24dp"
-        app:showAsAction="collapseActionView|ifRoom"/>
+        app:showAsAction="always"
+        app:actionViewClass="android.widget.SearchView"/>
     <item
         android:id="@+id/race_year"
         android:background="@drawable/bg_rounded"
         android:gravity="left"
         android:title="YEAR"
-        app:showAsAction="collapseActionView|ifRoom" />
+        app:actionViewClass="android.widget.SearchView"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/notifications"
