@@ -22,6 +22,8 @@ import android.widget.EditText;
 import android.widget.ListView;
 import android.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -60,7 +62,7 @@ public class Schedule extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
-        //context = getActivity();
+        context = getActivity();
     }
 
     @Override
@@ -69,12 +71,12 @@ public class Schedule extends Fragment {
         super.onCreateView(inflater, container, savedInstanceState);
 
         view = inflater.inflate(R.layout.fragment_schedule,container,false);
-        schedule = (ListView)view.findViewById(R.id.race_schedule);
+        //schedule = (ListView)view.findViewById(R.id.race_schedule);
 
-        setUpToolbar(schedule);
+        setUpToolbar(view);
 
-
-
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.race_schedule);
+        recyclerView.setLayoutManager(new GridLayoutManager(context,2));
         //search_race = (SearchView) view.findViewById(R.id.search_race);
 
         for(Championship championship: championships){
@@ -83,8 +85,8 @@ public class Schedule extends Fragment {
             }
         }
 
-        MyAdapter adapter = new MyAdapter(races,getActivity());
-        schedule.setAdapter(adapter);
+        adapter = new MyAdapter(context, (ArrayList<Race>) races);
+        recyclerView.setAdapter(adapter);
 
         return view;
     }
@@ -110,48 +112,31 @@ public class Schedule extends Fragment {
         MenuItem search_year_item = menu.findItem(R.id.search_year);
         MenuItem notifications_item = menu.findItem(R.id.notifications);
 
-        search_race_item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        search_year_item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
-        notifications_item.setShowAsAction(MenuItem.SHOW_AS_ACTION_COLLAPSE_ACTION_VIEW | MenuItem.SHOW_AS_ACTION_IF_ROOM);
+        search_race_item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        search_year_item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+        notifications_item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
 
 
         search_race = (SearchView) search_race_item.getActionView();
         search_race.setMaxWidth(Integer.MAX_VALUE);
         search_race.setQueryHint("Search");
+
+
         search_race.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
             @Override
             public boolean onQueryTextSubmit(String query) {
-                ArrayList<Race> filter_race = new ArrayList<Race>();
-
-                for(Race race: races){
-                    if(race.getName().toLowerCase().contains(query.toLowerCase())){
-                        filter_race.add(race);
-                    }
-                }
-
-                MyAdapter adapter = new MyAdapter(races,getActivity());
-                schedule.setAdapter(adapter);
-
                 return false;
             }
 
             @Override
             public boolean onQueryTextChange(String newText) {
-                ArrayList<Race> filter_race = new ArrayList<Race>();
-
-                for(Race race: races){
-                    if(race.getName().toLowerCase().contains(newText.toLowerCase())){
-                        filter_race.add(race);
-                    }
-                }
-
-                MyAdapter adapter = new MyAdapter(races,getActivity());
-                schedule.setAdapter(adapter);
-
+                adapter.getFilter().filter(newText);
                 return false;
             }
         });
 
+
+        /*
         search_year = (SearchView) search_race_item.getActionView();
         search_year.setQueryHint("Search");
         search_year.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
@@ -173,7 +158,7 @@ public class Schedule extends Fragment {
                 return false;
             }
         });
-
+        */
 
     }
 }

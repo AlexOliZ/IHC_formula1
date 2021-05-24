@@ -10,7 +10,7 @@
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView"/>
     <item
-        android:id="@+id/race_year"
+        android:id="@+id/search_year"
         android:background="@drawable/bg_rounded"
         android:gravity="left"
         android:title="YEAR"
