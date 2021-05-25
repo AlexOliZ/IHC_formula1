@@ -58,6 +58,10 @@ public class Schedule extends Fragment {
         ));
     }
 
+    public void selectYear(int value){
+        this.year = value;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -80,11 +84,11 @@ public class Schedule extends Fragment {
         //search_race = (SearchView) view.findViewById(R.id.search_race);
 
         for(Championship championship: championships){
-            if(championship.getYear() == 2021){
+            if(championship.getYear() == year){
                 races = championship.getRaces();
             }
         }
-
+        /* year -> pop up textview e quando escolher o ano cria um novo adapter com as corridas desse ano*/
         adapter = new MyAdapter(context, (ArrayList<Race>) races);
         recyclerView.setAdapter(adapter);
 
@@ -119,8 +123,7 @@ public class Schedule extends Fragment {
 
         search_race = (SearchView) search_race_item.getActionView();
         search_race.setMaxWidth(Integer.MAX_VALUE);
-        search_race.setQueryHint("Search");
-
+        search_race.setQueryHint("Search Race");
 
         search_race.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
             @Override
@@ -134,31 +137,6 @@ public class Schedule extends Fragment {
                 return false;
             }
         });
-
-
-        /*
-        search_year = (SearchView) search_race_item.getActionView();
-        search_year.setQueryHint("Search");
-        search_year.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                ArrayList<Championship> filter_championship = new ArrayList<Championship>();
-
-                for(Championship championship: championships){
-                    if(championship.getYear() == Integer.parseInt(newText)){
-                        filter_championship.add(championship);
-                    }
-                }
-
-                return false;
-            }
-        });
-        */
 
     }
 }

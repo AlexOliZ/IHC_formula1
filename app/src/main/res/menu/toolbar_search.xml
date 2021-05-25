@@ -11,10 +11,8 @@
         app:actionViewClass="android.widget.SearchView"/>
     <item
         android:id="@+id/search_year"
-        android:background="@drawable/bg_rounded"
         android:gravity="left"
-        android:title="YEAR"
-        app:actionViewClass="android.widget.SearchView"
+        android:title="2021"
         app:showAsAction="always" />
 
     <item

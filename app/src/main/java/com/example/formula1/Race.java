@@ -5,12 +5,12 @@ public class Race {
     private String country;
     private int image;
     private String description;
-    private String date;
     private int day;
     private int month;
     private int year;
     private int length;
     private int hours;
+    private boolean notify;
     // Activity context;
 
     public Race(String name, String country, String description, int day, int month, int year, int hours, int length){
@@ -24,6 +24,7 @@ public class Race {
         this.year = year;
         this.length = length;
         this.hours = hours;
+        this.notify=false;
     }
 
     public String getName(){ return this.name; }
@@ -35,4 +36,7 @@ public class Race {
     public int getYear(){ return this.year; }
     public int getMonth(){ return this.month; }
     public int getDay(){ return this.day; }
+    public int getHours(){return this.hours;}
+    public boolean getNotify(){ return this.notify; }
+    public void Notify(){this.notify=true;}
 }
