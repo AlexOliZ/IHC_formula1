@@ -10,15 +10,18 @@
         app:showAsAction="always"
         app:actionViewClass="android.widget.SearchView"/>
     <item
-        android:id="@+id/search_year"
-        android:gravity="left"
-        android:title="2021"
-        app:showAsAction="always" />
-
-    <item
         android:id="@+id/notifications"
         android:icon="@drawable/toolbar_notifications_disabled"
         android:title="Notifications"
-        app:showAsAction="collapseActionView|ifRoom" />
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.widget.ImageButton"
+        android:layout_weight="1"
+        android:gravity="left"/>
+    <item
+        android:id="@+id/search_year"
+        android:gravity="left"
+        android:title="2021"
+        app:showAsAction="collapseActionView|ifRoom"
+        app:actionViewClass="android.widget.Button"/>
 
 </menu>
