@@ -40,10 +40,10 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class Schedule extends Fragment {
-    private int year;
+    private static int year = 2021;
     private String race = "Search Race";
     private List<Race> races;
-    private List<Championship> championships = allChampionships();
+    private static List<Championship> championships = allChampionships();
     private SearchView search_race;
     private Button search_year;
     private ListView schedule;
@@ -52,7 +52,7 @@ public class Schedule extends Fragment {
     private MyAdapter adapter;
     private Context context;
 
-    private List<Championship> allChampionships() {
+    private static List<Championship> allChampionships() {
         return new ArrayList<>(Arrays.asList(
                 new Championship(2005),
                 new Championship(2006),
@@ -74,8 +74,8 @@ public class Schedule extends Fragment {
         ));
     }
 
-    public void selectYear(int value){
-        this.year = value;
+    public static void selectYear(int value){
+        year = value;
     }
 
     @Override
@@ -83,7 +83,6 @@ public class Schedule extends Fragment {
         super.onCreate(savedInstanceState);
         this.cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
         setHasOptionsMenu(true);
-        this.year = cal.get(Calendar.YEAR);
         context = getActivity();
     }
 
@@ -184,7 +183,7 @@ public class Schedule extends Fragment {
 
         Button search_year = (Button) search_year_item.getActionView();
         search_year.setBackgroundColor(Color.parseColor("#DD1515"));
-        search_year.setText(Integer.toString(this.year));
+        search_year.setText(Integer.toString(year));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         search_year.setLayoutParams(params);
         search_year.setOnClickListener(new View.OnClickListener() {

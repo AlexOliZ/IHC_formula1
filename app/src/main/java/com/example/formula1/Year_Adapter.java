@@ -54,8 +54,8 @@ public class Year_Adapter extends RecyclerView.Adapter<Year_Adapter.MyViewHolder
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-                Fragment sh = new Schedule();
-                fragmentTransaction.replace(R.id.fragmentContainerView, sh);
+                Schedule.selectYear(year);
+                fragmentTransaction.replace(R.id.fragmentContainerView, new Schedule());
                 fragmentTransaction.commit();
             }
         });
