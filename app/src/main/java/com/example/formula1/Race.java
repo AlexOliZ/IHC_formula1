@@ -11,6 +11,7 @@ public class Race {
     private int length;
     private int hours;
     private boolean notify;
+    private boolean favorite;
     // Activity context;
 
     public Race(String name, String country, String description, int day, int month, int year, int hours, int length){
@@ -25,6 +26,7 @@ public class Race {
         this.length = length;
         this.hours = hours;
         this.notify=false;
+        this.favorite=false;
     }
 
     public String getName(){ return this.name; }
@@ -39,4 +41,6 @@ public class Race {
     public int getHours(){return this.hours;}
     public boolean getNotify(){ return this.notify; }
     public void Notify(){this.notify=true;}
+    public boolean getFavorite(){ return this.favorite; }
+    public void Favorite(){this.favorite=true;}
 }

@@ -45,6 +45,7 @@ public class Schedule extends Fragment {
     private List<Race> races;
     private static List<Championship> championships = allChampionships();
     private static Race selected_race;
+    private static boolean notify_all = false;
     private SearchView search_race;
     private Button search_year;
     private ListView schedule;
@@ -75,6 +76,8 @@ public class Schedule extends Fragment {
         ));
     }
 
+    public static void notify_all(){ notify_all=!notify_all;}
+    public static boolean get_notify_all(){ return notify_all; }
     public static void selectYear(int value){
         year = value;
     }

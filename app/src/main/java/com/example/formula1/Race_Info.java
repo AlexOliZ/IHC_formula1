@@ -14,6 +14,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
@@ -77,6 +78,8 @@ public class Race_Info extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
+        CheckBox notify = (CheckBox) view.findViewById(R.id.notify_button);
 
         VideoView video = (VideoView)view.findViewById(R.id.race_video);
         String videoPath = "android.resource://"+context.getPackageName()+"/"+R.raw.video;

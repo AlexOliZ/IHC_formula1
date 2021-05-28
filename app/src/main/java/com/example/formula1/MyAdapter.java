@@ -122,8 +122,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
                 holder.race_notify.setVisibility(View.GONE);
             }
         }
-        if (race.getNotify())
+        if (race.getNotify() || Schedule.get_notify_all())
             holder.race_notify.setChecked(true);
+        if (race.getFavorite())
+            holder.race_favorite.setChecked(true);
     }
 
     @Override
@@ -179,6 +181,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         TextView race_date;
         ImageView race_image;
         CheckBox race_notify;
+        CheckBox race_favorite;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
@@ -186,6 +189,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             race_date = itemView.findViewById(R.id.race_date);
             race_image = itemView.findViewById(R.id.race_image);
             race_notify = itemView.findViewById(R.id.notify_button);
+            race_notify = itemView.findViewById(R.id.favorites_button);
         }
     }
 }
