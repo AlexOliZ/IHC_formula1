@@ -11,7 +11,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <TextView
+        <EditText
             android:id="@+id/search_champ_year"
             android:layout_width="150dp"
             android:layout_height="37dp"

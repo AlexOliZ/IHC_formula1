@@ -7,6 +7,7 @@
     android:id="@+id/race_information">
 
     <!-- TODO: Update blank fragment layout -->
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
@@ -14,16 +15,96 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
+            <ImageButton
+                android:id="@+id/go_back_button"
+                android:layout_width="39dp"
+                android:layout_height="35dp"
+                android:layout_alignParentStart="true"
+                android:layout_alignParentLeft="true"
+                android:layout_alignParentTop="true"
+                android:layout_marginStart="18dp"
+                android:layout_marginLeft="18dp"
+                android:layout_marginTop="9dp"
+                android:background="@drawable/go_back_red"
+                android:button="@drawable/go_back"
+                android:visibility="visible" />
+            <CheckBox
+                android:id="@+id/notify_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="300dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="16dp"
+                android:layout_marginBottom="182dp"
+                android:background="@color/white"
+                android:button="@drawable/notification_box" />
+
+            <CheckBox
+                android:id="@+id/favorites_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentTop="true"
+                android:layout_alignParentEnd="true"
+                android:layout_alignParentRight="true"
+                android:layout_marginStart="300dp"
+                android:layout_marginLeft="15dp"
+                android:layout_marginTop="56dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginRight="30dp"
+                android:layout_marginBottom="182dp"
+                android:background="@color/white"
+                android:button="@drawable/favorites" />
 
             <ImageView
                 android:id="@+id/race_info_image"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerHorizontal="true"/>
+            <RelativeLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_below="@+id/race_info_image"
+                android:id="@+id/race_desc"
+                android:layout_marginTop="15dp">
+                <TextView
+                    android:id="@+id/race_name"
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="race_name"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/race_date"
+                    android:layout_toRightOf="@+id/race_name"
+                    android:layout_width="100dp"
+                    android:layout_height="wrap_content"
+                    android:text="race_date"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:gravity="center"/>
+                <TextView
+                    android:id="@+id/race_description"
+                    android:layout_below="@+id/race_name"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="race_description"
+                    android:textStyle="bold"
+                    android:textSize="15dp"
+                    android:gravity="center"
+                    android:layout_centerHorizontal="true"
+                    android:layout_marginTop="10dp"/>
+            </RelativeLayout>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/race_results"
-                android:layout_below="@+id/race_info_image"
+                android:layout_below="@+id/race_desc"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"

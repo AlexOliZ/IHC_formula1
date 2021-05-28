@@ -12,7 +12,10 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.SearchView;
+import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -47,6 +50,24 @@ public class select_year extends Fragment {
                 fragmentTransaction.commit();
             }
         });
+
+
+        EditText search_year = (EditText) view.findViewById(R.id.search_champ_year);
+
+        search_year.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+
+            @Override
+            public void onFocusChange(View v, boolean hasFocus) {
+
+                // When focus is lost check that the text field has valid values.
+
+                if (!hasFocus) {
+                    adapter.getFilter().filter(search_year.getText());
+                }
+            }
+        });
+
+
 
         adapter = new Year_Adapter(getActivity(),context, (ArrayList<Integer>) years);
         recyclerView.setAdapter(adapter);

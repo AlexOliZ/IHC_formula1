@@ -31,7 +31,23 @@
             android:maxWidth="300dp" />
 
         <CheckBox
-            android:id="@+id/notify_button"
+        android:id="@+id/notify_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginStart="300dp"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="30dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginBottom="182dp"
+        android:background="@color/white"
+        android:button="@drawable/notification_box"
+        android:onClick="onCheckboxClicked" />
+        <CheckBox
+            android:id="@+id/favorites_button"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentTop="true"
@@ -39,13 +55,12 @@
             android:layout_alignParentRight="true"
             android:layout_marginStart="300dp"
             android:layout_marginLeft="15dp"
-            android:layout_marginTop="25dp"
+            android:layout_marginTop="56dp"
             android:layout_marginEnd="30dp"
-            android:layout_marginRight="16dp"
+            android:layout_marginRight="30dp"
             android:layout_marginBottom="182dp"
             android:background="@color/white"
-            android:button="@drawable/notification_box"
-            android:onClick="onCheckboxClicked" />
+            android:button="@drawable/favorites" />
 
         <LinearLayout
             android:id="@+id/race_text"

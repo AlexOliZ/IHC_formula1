@@ -1,10 +1,12 @@
 package com.example.formula1;
 
 import android.content.Context;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -12,8 +14,10 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.TextView;
 import android.widget.VideoView;
 
 import java.util.ArrayList;
@@ -42,6 +46,15 @@ public class Race_Info extends Fragment {
         ImageView race_image = (ImageView) view.findViewById(R.id.race_info_image);
         race_image.setImageResource(race.getImage());
 
+        TextView race_name = (TextView) view.findViewById(R.id.race_name);
+        race_name.setText(race.getName());
+
+        TextView race_date = (TextView) view.findViewById(R.id.race_date);
+        race_date.setText(race.getDate());
+
+        TextView race_description = (TextView) view.findViewById(R.id.race_description);
+        race_description.setText(race.getDescription());
+
         RecyclerView recyclerView_race = (RecyclerView)view.findViewById(R.id.race_results);
         recyclerView_race.setLayoutManager(new LinearLayoutManager(context));
 
@@ -53,6 +66,17 @@ public class Race_Info extends Fragment {
 
         qual_adapter = new Table_Adapter(getActivity(),context, race);
         recyclerView_qual.setAdapter(qual_adapter);
+
+        ImageButton go_back = (ImageButton) view.findViewById(R.id.go_back_button);
+
+        go_back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = getActivity().getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainerView, new Schedule());
+                fragmentTransaction.commit();
+            }
+        });
 
         VideoView video = (VideoView)view.findViewById(R.id.race_video);
         String videoPath = "android.resource://"+context.getPackageName()+"/"+R.raw.video;
