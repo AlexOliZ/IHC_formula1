@@ -3,12 +3,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <Button
-        android:id="@+id/go_back_fragment"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:button="@drawable/go_back"/>
-
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/championship_years"
         android:layout_width="match_parent"

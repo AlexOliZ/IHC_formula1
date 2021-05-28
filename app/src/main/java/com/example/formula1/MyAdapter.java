@@ -17,7 +17,6 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -32,6 +31,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
     private int year;
     private Calendar cal;
     private FragmentActivity activity;
+    private int hour;
     /* if true notifca todas as corridas */
     /* notification settings notify_races */
     private boolean notification = false;
@@ -42,9 +42,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         this.context = context;
         this.cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
         this.year = cal.get(Calendar.YEAR);
-        this.month = cal.get(Calendar.MONTH);
+        this.month = cal.get(Calendar.MONTH)+1;
         this.day = cal.get(Calendar.DAY_OF_MONTH);
         this.activity = activity;
+        this.hour = cal.get(Calendar.HOUR);
     }
 
     public void notify_races(){this.notification= !this.notification;}
@@ -71,7 +72,8 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView, new Settings());
+                Schedule.selectRace(race);
+                fragmentTransaction.replace(R.id.fragmentContainerView, new Race_Info());
                 fragmentTransaction.commit();
             }
         });
@@ -85,17 +87,39 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             }
         });
 
-        // se a corrida for no dia de hoje mostrar a data
-        if(this.year == race.getYear() && this.month == race.getMonth()) {
-            if (this.day - race.getDay() < 7) {
-                // race in less than ... days
-                String warning = "RACE IN "+ Integer.toString(this.day-race.getDay()) + " DAYS";
-                holder.race_date.setText(warning);
-                holder.race_date.setTextColor(Color.parseColor("#DD1515"));
-            } else if (this.day == race.getDay()) {
-                // race TODAY AT
-                holder.race_date.setText("RACE TODAY! AT "+Integer.toString(race.getHours())+"h") ;
-                holder.race_date.setTextColor(Color.parseColor("#DD1515"));
+        if(this.year > cal.get(Calendar.YEAR)){
+            String warning = "SEE RESULTS "+ race.getDate();
+            holder.race_date.setText(warning);
+            holder.race_date.setTextColor(Color.parseColor("#DD1515"));
+        }else if(this.year == race.getYear() ) {
+            if (this.month == race.getMonth()) {
+                if (this.day == race.getDay()) {
+                    // race TODAY AT
+                    if(this.hour<=race.getHours()) {
+                        holder.race_date.setText("RACE TODAY! AT " + Integer.toString(race.getHours()) + "h");
+                        holder.race_date.setTextColor(Color.parseColor("#DD1515"));
+                    }else if (this.hour -2 <=race.getHours()) {
+                        holder.race_date.setText("RACE STARTED");
+                        holder.race_date.setTextColor(Color.parseColor("#DD1515"));
+                        holder.race_notify.setVisibility(View.INVISIBLE);
+                    } else {
+                        holder.race_date.setText("RACE OVER ... see results");
+                        holder.race_date.setTextColor(Color.parseColor("#DD1515"));
+                        holder.race_notify.setVisibility(View.INVISIBLE);
+                    }
+                }else if (this.day - race.getDay() < 7) {
+                    String warning = "RACE IN " + Integer.toString(this.day - race.getDay()) + " DAYS";
+                    holder.race_date.setText(warning);
+                    holder.race_date.setTextColor(Color.parseColor("#DD1515"));
+                } else if (this.day < race.getDay()){
+                    holder.race_date.setText("SEE RESULTS " + race.getDate());
+                    holder.race_date.setTextColor(Color.parseColor("#000000"));
+                    holder.race_notify.setVisibility(View.INVISIBLE);
+                }
+            } else if (this.month == race.getMonth()){
+                holder.race_date.setText("SEE RESULTS " + race.getDate());
+                holder.race_date.setTextColor(Color.parseColor("#000000"));
+                holder.race_notify.setVisibility(View.GONE);
             }
         }
         if (race.getNotify())

@@ -1,64 +1,68 @@
 package com.example.formula1;
 
+import android.content.Context;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.MediaController;
+import android.widget.VideoView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Race_Info#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+
 public class Race_Info extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Race_Info() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Race_Info.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Race_Info newInstance(String param1, String param2) {
-        Race_Info fragment = new Race_Info();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private View view;
+    private Context context;
+    private Table_Adapter race_adapter;
+    private Table_Adapter qual_adapter;
+    private Race race;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        context = getActivity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_race__information, container, false);
+        this.race = Schedule.getRace();
+
+        view = inflater.inflate(R.layout.fragment_race__information,container,false);
+
+        ImageView race_image = (ImageView) view.findViewById(R.id.race_info_image);
+        race_image.setImageResource(race.getImage());
+
+        RecyclerView recyclerView_race = (RecyclerView)view.findViewById(R.id.race_results);
+        recyclerView_race.setLayoutManager(new LinearLayoutManager(context));
+
+        RecyclerView recyclerView_qual = (RecyclerView)view.findViewById(R.id.qualifying_results);
+        recyclerView_qual.setLayoutManager(new LinearLayoutManager(context));
+
+        race_adapter = new Table_Adapter(getActivity(),context, race);
+        recyclerView_race.setAdapter(race_adapter);
+
+        qual_adapter = new Table_Adapter(getActivity(),context, race);
+        recyclerView_qual.setAdapter(qual_adapter);
+
+        VideoView video = (VideoView)view.findViewById(R.id.race_video);
+        String videoPath = "android.resource://"+context.getPackageName()+"/"+R.raw.video;
+        Uri uri = Uri.parse(videoPath);
+        video.setVideoURI(uri);
+
+        MediaController mediaController = new MediaController(context);
+        video.setMediaController(mediaController);
+        mediaController.setAnchorView(video);
+
+        return view;
     }
 }

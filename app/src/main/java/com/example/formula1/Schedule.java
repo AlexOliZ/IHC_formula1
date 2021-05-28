@@ -44,6 +44,7 @@ public class Schedule extends Fragment {
     private String race = "Search Race";
     private List<Race> races;
     private static List<Championship> championships = allChampionships();
+    private static Race selected_race;
     private SearchView search_race;
     private Button search_year;
     private ListView schedule;
@@ -77,6 +78,8 @@ public class Schedule extends Fragment {
     public static void selectYear(int value){
         year = value;
     }
+    public static void selectRace(Race race) { selected_race = race;}
+    public static Race getRace(){ return selected_race; }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {

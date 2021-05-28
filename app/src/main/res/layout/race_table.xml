@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_centerHorizontal="true">
+    <TextView
+        android:id="@+id/pilot_name"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:textColor="#333"
+        android:background="@drawable/bg_rectangle"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:text="name"
+        android:gravity="center_horizontal"/>
+
+    <TextView
+        android:id="@+id/pilot_team"
+        android:layout_width="150dp"
+        android:layout_height="wrap_content"
+        android:layout_toRightOf="@+id/pilot_name"
+        android:layout_gravity="center"
+        android:textColor="#333"
+        android:background="@drawable/bg_rectangle"
+        android:textSize="25dp"
+        android:text="team"
+        android:textStyle="bold"
+        android:gravity="center"/>
+
+    <TextView
+        android:id="@+id/pilot_position"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_toRightOf="@+id/pilot_team"
+        android:textAllCaps="true"
+        android:textColor="#333"
+        android:background="@drawable/bg_rectangle"
+        android:textSize="25dp"
+        android:textStyle="bold"
+        android:text="1"
+        android:gravity="center"/>
+</RelativeLayout>
