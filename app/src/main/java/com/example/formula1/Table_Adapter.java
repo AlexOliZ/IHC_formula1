@@ -26,9 +26,6 @@ import java.util.TimeZone;
 
 public class Table_Adapter extends RecyclerView.Adapter<Table_Adapter.MyViewHolder>{
     private Race race;
-    private List<String> names;
-    private List<String> positions;
-    private List<String> teams;
     private final Context context;
     private FragmentActivity activity;
     /* if true notifca todas as corridas */
@@ -37,9 +34,7 @@ public class Table_Adapter extends RecyclerView.Adapter<Table_Adapter.MyViewHold
 
     public Table_Adapter(FragmentActivity activity , Context context,Race race){
         this.race = race;
-        this.names = new ArrayList<>(Arrays.asList(new String[]{"Lewis", "Vettel", "Lando", "Ricciardo", "Perez", "Sainz", "Alonso", "Verstappen", "Leclerc", "Russel"}));
-        this.teams = new ArrayList<>(Arrays.asList(new String[]{"Mercedes", "Redbull", "Ferrari", "Mclaren", "Aston Martin", "Williams", "Renault", "Renault", "Mercedes", "Redbull"}));
-        this.positions = new ArrayList<>(Arrays.asList(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10"}));
+
         this.context = context;
         this.activity = activity;
     }
@@ -57,9 +52,9 @@ public class Table_Adapter extends RecyclerView.Adapter<Table_Adapter.MyViewHold
 
     @Override
     public void onBindViewHolder(@NonNull Table_Adapter.MyViewHolder holder, int position) {
-        String name = names.get(position);
-        String p = positions.get(position);
-        String team = teams.get(position);
+        String name = Variables.names.get(position);
+        String p = Variables.positions.get(position);
+        String team = Variables.teams.get(position);
 
         holder.pilot_name.setText(name);
         holder.pilot_position.setText(p);
@@ -93,7 +88,7 @@ public class Table_Adapter extends RecyclerView.Adapter<Table_Adapter.MyViewHold
 
     @Override
     public int getItemCount() {
-        return names.size();
+        return Variables.names.size();
     }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{

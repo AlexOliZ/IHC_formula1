@@ -20,15 +20,13 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Year_Adapter extends RecyclerView.Adapter<Year_Adapter.MyViewHolder> implements Filterable {
-    private List<Integer> championships = new ArrayList<>();
     private List<Integer> filter_championships = new ArrayList<>();
     private Context context;
     private FragmentActivity activity;
 
 
-    public Year_Adapter(FragmentActivity activity , Context context, ArrayList<Integer> years){
-        this.championships = years;
-        this.filter_championships = years;
+    public Year_Adapter(FragmentActivity activity , Context context){
+        this.filter_championships = Variables.years;
         this.context = context;
         this.activity = activity;
     }
@@ -54,7 +52,11 @@ public class Year_Adapter extends RecyclerView.Adapter<Year_Adapter.MyViewHolder
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-                Schedule.selectYear(year);
+                Variables.selected_year=year;
+                for(Championship champ: Variables.championships) {
+                    if(champ.getYear()==year)
+                        Variables.selected_champ = champ;
+                }
                 fragmentTransaction.replace(R.id.fragmentContainerView, new Schedule());
                 fragmentTransaction.commit();
             }
@@ -83,10 +85,10 @@ public class Year_Adapter extends RecyclerView.Adapter<Year_Adapter.MyViewHolder
             ArrayList<Integer> filterd_list = new ArrayList<>();
 
             if(constraint == null){
-                filterd_list.addAll(championships);
+                filterd_list.addAll(Variables.years);
             }else{
                 String filter_query = constraint.toString().toLowerCase().trim();
-                for(int year: championships){
+                for(int year: Variables.years){
                     if(Integer.toString(year).contains(filter_query))
                         filterd_list.add(year);
                 }

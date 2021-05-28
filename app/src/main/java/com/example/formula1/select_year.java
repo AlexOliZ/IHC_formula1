@@ -21,7 +21,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 
 public class select_year extends Fragment {
-    private ArrayList<Integer> years = new ArrayList<>(Arrays.asList(2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021));
+
     private View view;
     private Context context;
     private Year_Adapter adapter;
@@ -69,7 +69,7 @@ public class select_year extends Fragment {
 
 
 
-        adapter = new Year_Adapter(getActivity(),context, (ArrayList<Integer>) years);
+        adapter = new Year_Adapter(getActivity(),context);
         recyclerView.setAdapter(adapter);
         recyclerView.smoothScrollToPosition((int)(adapter.getItemCount()/2));
         return view;

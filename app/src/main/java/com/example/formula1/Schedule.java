@@ -26,6 +26,7 @@ import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SearchView;
 import androidx.appcompat.widget.Toolbar;
+import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -40,56 +41,23 @@ import java.util.stream.Stream;
 import java.util.stream.StreamSupport;
 
 public class Schedule extends Fragment {
-    private static int year = 2021;
     private String race = "Search Race";
-    private List<Race> races;
-    private static List<Championship> championships = allChampionships();
-    private static Race selected_race;
-    private static boolean notify_all = false;
     private SearchView search_race;
     private Button search_year;
     private ListView schedule;
     private View view;
-    private Calendar cal;
+    private FragmentActivity activity;
     private MyAdapter adapter;
     private Context context;
 
-    private static List<Championship> allChampionships() {
-        return new ArrayList<>(Arrays.asList(
-                new Championship(2005),
-                new Championship(2006),
-                new Championship(2007),
-                new Championship(2008),
-                new Championship(2009),
-                new Championship(2010),
-                new Championship(2011),
-                new Championship(2012),
-                new Championship(2013),
-                new Championship(2014),
-                new Championship(2015),
-                new Championship(2016),
-                new Championship(2017),
-                new Championship(2018),
-                new Championship(2019),
-                new Championship(2020),
-                new Championship(2021)
-        ));
-    }
 
-    public static void notify_all(){ notify_all=!notify_all;}
-    public static boolean get_notify_all(){ return notify_all; }
-    public static void selectYear(int value){
-        year = value;
-    }
-    public static void selectRace(Race race) { selected_race = race;}
-    public static Race getRace(){ return selected_race; }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        this.cal = Calendar.getInstance(TimeZone.getTimeZone("Europe/Paris"));
         setHasOptionsMenu(true);
         context = getActivity();
+        Variables.month = Variables.cal.get(Calendar.MONTH);
     }
 
     @Override
@@ -106,25 +74,20 @@ public class Schedule extends Fragment {
         recyclerView.setLayoutManager(new GridLayoutManager(context,2));
         //search_race = (SearchView) view.findViewById(R.id.search_race);
 
-        for(Championship championship: championships){
-            if(championship.getYear() == year){
-                races = championship.getRaces();
-            }
-        }
         int position=0;
-        if(year == cal.get(Calendar.YEAR)) {
-            for (int i = 0; i < races.size(); i++) {
-                if (races.get(i).getMonth() == cal.get(Calendar.MONTH) + 1 && races.get(i).getDay() >= cal.get(Calendar.DAY_OF_MONTH)) {
+        if(Variables.year == Variables.cal.get(Calendar.YEAR)) {
+            for (int i = 0; i < Variables.selected_champ.getRaces().size(); i++) {
+                if (Variables.selected_champ.getRaces().get(i).getMonth() == Variables.cal.get(Calendar.MONTH) + 1 && Variables.selected_champ.getRaces().get(i).getDay() >= Variables.cal.get(Calendar.DAY_OF_MONTH)) {
                     position = i;
                     break;
-                } else if (races.get(i).getMonth() >= cal.get(Calendar.MONTH) + 1 || races.get(i).getDay() >= cal.get(Calendar.DAY_OF_MONTH)) {
+                } else if (Variables.selected_champ.getRaces().get(i).getMonth() >= Variables.cal.get(Calendar.MONTH) + 1 || Variables.selected_champ.getRaces().get(i).getDay() >= Variables.cal.get(Calendar.DAY_OF_MONTH)) {
                     position = i;
                     break;
                 }
             }
         }
         /* year -> pop up textview e quando escolher o ano cria um novo adapter com as corridas desse ano*/
-        adapter = new MyAdapter(getActivity(),context, (ArrayList<Race>) races);
+        adapter = new MyAdapter(getActivity(),context);
         recyclerView.setAdapter(adapter);
         System.out.println(position);
         recyclerView.smoothScrollToPosition(position);
@@ -189,7 +152,7 @@ public class Schedule extends Fragment {
 
         Button search_year = (Button) search_year_item.getActionView();
         search_year.setBackgroundColor(Color.parseColor("#DD1515"));
-        search_year.setText(Integer.toString(year));
+        search_year.setText(Integer.toString(Variables.selected_year));
         LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(LinearLayout.LayoutParams.WRAP_CONTENT, LinearLayout.LayoutParams.WRAP_CONTENT);
         search_year.setLayoutParams(params);
         search_year.setOnClickListener(new View.OnClickListener() {

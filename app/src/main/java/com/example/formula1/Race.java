@@ -40,7 +40,7 @@ public class Race {
     public int getDay(){ return this.day; }
     public int getHours(){return this.hours;}
     public boolean getNotify(){ return this.notify; }
-    public void Notify(){this.notify=true;}
+    public void Notify(){this.notify=!this.notify;}
     public boolean getFavorite(){ return this.favorite; }
-    public void Favorite(){this.favorite=true;}
+    public void Favorite(){this.favorite=!this.favorite;}
 }

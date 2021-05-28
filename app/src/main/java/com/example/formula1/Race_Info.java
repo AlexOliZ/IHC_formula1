@@ -28,7 +28,6 @@ public class Race_Info extends Fragment {
     private Context context;
     private Table_Adapter race_adapter;
     private Table_Adapter qual_adapter;
-    private Race race;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -40,21 +39,20 @@ public class Race_Info extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        this.race = Schedule.getRace();
 
         view = inflater.inflate(R.layout.fragment_race__information,container,false);
 
         ImageView race_image = (ImageView) view.findViewById(R.id.race_info_image);
-        race_image.setImageResource(race.getImage());
+        race_image.setImageResource(Variables.selected_race.getImage());
 
         TextView race_name = (TextView) view.findViewById(R.id.race_name);
-        race_name.setText(race.getName());
+        race_name.setText(Variables.selected_race.getName());
 
         TextView race_date = (TextView) view.findViewById(R.id.race_date);
-        race_date.setText(race.getDate());
+        race_date.setText(Variables.selected_race.getDate());
 
         TextView race_description = (TextView) view.findViewById(R.id.race_description);
-        race_description.setText(race.getDescription());
+        race_description.setText(Variables.selected_race.getDescription());
 
         RecyclerView recyclerView_race = (RecyclerView)view.findViewById(R.id.race_results);
         recyclerView_race.setLayoutManager(new LinearLayoutManager(context));
@@ -62,10 +60,10 @@ public class Race_Info extends Fragment {
         RecyclerView recyclerView_qual = (RecyclerView)view.findViewById(R.id.qualifying_results);
         recyclerView_qual.setLayoutManager(new LinearLayoutManager(context));
 
-        race_adapter = new Table_Adapter(getActivity(),context, race);
+        race_adapter = new Table_Adapter(getActivity(),context, Variables.selected_race);
         recyclerView_race.setAdapter(race_adapter);
 
-        qual_adapter = new Table_Adapter(getActivity(),context, race);
+        qual_adapter = new Table_Adapter(getActivity(),context, Variables.selected_race);
         recyclerView_qual.setAdapter(qual_adapter);
 
         ImageButton go_back = (ImageButton) view.findViewById(R.id.go_back_button);
@@ -79,7 +77,42 @@ public class Race_Info extends Fragment {
             }
         });
 
-        CheckBox notify = (CheckBox) view.findViewById(R.id.notify_button);
+
+
+        CheckBox race_notify = (CheckBox) view.findViewById(R.id.notify_button);
+        race_notify.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // Do something here.
+                for(Championship c: Variables.championships) {
+                    if(c.getYear()==Variables.selected_year) {
+                        for (Race r : c.getRaces()) {
+                            if (r.getDay() == Variables.selected_race.getDay() && r.getMonth() == Variables.selected_race.getMonth())
+                                r.Notify();
+                        }
+                    }
+                }
+            }
+        });
+
+        CheckBox race_favorite = (CheckBox) view.findViewById(R.id.favorites_button);
+        race_favorite.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                // Do something here.
+                for(Championship c: Variables.championships) {
+                    if(c.getYear()==Variables.selected_year) {
+                        for (Race r : c.getRaces()) {
+                            if (r.getDay() == Variables.selected_race.getDay() && r.getMonth() == Variables.selected_race.getMonth())
+                                r.Favorite();
+                        }
+                    }
+                }
+            }
+        });
+
+        race_notify.setChecked(Variables.selected_race.getNotify());
+        race_favorite.setChecked(Variables.selected_race.getFavorite());
 
         VideoView video = (VideoView)view.findViewById(R.id.race_video);
         String videoPath = "android.resource://"+context.getPackageName()+"/"+R.raw.video;
