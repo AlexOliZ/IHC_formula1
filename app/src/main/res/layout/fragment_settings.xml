@@ -5,18 +5,214 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Settings">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <TextView
+                android:id="@+id/notifications_settings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Notication Settings"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginLeft="20dp"/>
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentBottom="true"
-        android:layout_marginEnd="163dp"
-        android:layout_marginRight="163dp"
-        android:layout_marginBottom="352dp"
-        android:text="Settings"
-        android:textSize="24dp" />
+            <CheckBox
+                android:id="@+id/box_all"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text= "Notify All"
+                android:layout_below="@+id/notifications_settings"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true" />
 
+            <CheckBox
+                android:id="@+id/box_favorites"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text= "Notify Favorites"
+                android:layout_below="@+id/box_all"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true" />
+            <CheckBox
+                android:id="@+id/box_custom"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text= "Notify Favorites"
+                android:layout_below="@+id/box_favorites"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true" />
+
+            <TextView
+                android:id="@+id/notify_type"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:text="Notications Types"
+                android:textStyle="bold"
+                android:textSize="15dp"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/box_custom"
+                android:layout_centerHorizontal="true"/>
+
+            <CheckBox
+                android:id="@+id/box_races"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text= "Notify Races"
+                android:layout_below="@+id/notify_type"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true" />
+
+            <CheckBox
+                android:id="@+id/box_pilots"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text= "Notify Pilots"
+                android:layout_below="@+id/box_races"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true" />
+
+            <CheckBox
+                android:id="@+id/box_teams"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:inputType="none"
+                android:text= "Notify Teams"
+                android:layout_below="@+id/box_pilots"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true" />
+
+            <EditText
+                android:id="@+id/add_race_notification"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/box_teams"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"
+                android:text="add race by name"/>
+            <ImageButton
+                android:id="@+id/add_race_button_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/add_race_notification"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/box_teams"
+                android:src="@drawable/add_button"/>
+
+            <EditText
+                android:id="@+id/add_championship_notification"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/add_race_notification"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"
+                android:text="add championship"/>
+            <ImageButton
+                android:id="@+id/add_championship_button_notification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/add_race_notification"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/add_race_notification"
+                android:src="@drawable/add_button"/>
+
+
+            <TextView
+                android:id="@+id/favorites_settings"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Favorites Settings"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/add_championship_notification"
+                android:layout_marginLeft="30dp"/>
+
+            <EditText
+                android:id="@+id/add_race"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/favorites_settings"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"
+                android:text="add race by name"/>
+            <ImageButton
+                android:id="@+id/add_race_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/add_race"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/favorites_settings"
+                android:src="@drawable/add_button"/>
+
+            <EditText
+                android:id="@+id/add_championship"
+                android:layout_width="200dp"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/add_race"
+                android:layout_marginTop="15dp"
+                android:layout_centerHorizontal="true"
+                android:text="add championship"/>
+            <ImageButton
+                android:id="@+id/add_championship_button"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@+id/add_race"
+                android:layout_marginTop="15dp"
+                android:layout_below="@+id/add_race"
+                android:src="@drawable/add_button"/>
+
+            <TextView
+                android:id="@+id/list_notifications"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Notifications"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/add_championship"
+                android:layout_marginLeft="30dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/notifications_list"
+                android:layout_below="@+id/list_notifications"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"/>
+
+            <TextView
+                android:id="@+id/list_favorites"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:text="Favorites"
+                android:textStyle="bold"
+                android:textSize="20dp"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/notifications_list"
+                android:layout_marginLeft="30dp"/>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/favorites_list"
+                android:layout_below="@+id/list_favorites"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="15dp"/>
+
+        </RelativeLayout>
+
+
+
+    </ScrollView>
 </RelativeLayout>
+
+

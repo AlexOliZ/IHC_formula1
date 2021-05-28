@@ -53,7 +53,7 @@ public class select_year extends Fragment {
 
 
         EditText search_year = (EditText) view.findViewById(R.id.search_champ_year);
-
+        /*
         search_year.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
             @Override
@@ -61,13 +61,11 @@ public class select_year extends Fragment {
 
                 // When focus is lost check that the text field has valid values.
 
-                if (!hasFocus) {
-                    adapter.getFilter().filter(search_year.getText());
-                }
+                adapter.getFilter().filter(search_year.getText());
+
             }
         });
-
-
+        */
 
         adapter = new Year_Adapter(getActivity(),context);
         recyclerView.setAdapter(adapter);

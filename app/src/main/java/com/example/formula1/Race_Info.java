@@ -23,7 +23,7 @@ import android.widget.VideoView;
 
 import java.util.ArrayList;
 
-public class Race_Info extends Fragment {
+public class    Race_Info extends Fragment {
     private View view;
     private Context context;
     private Table_Adapter race_adapter;

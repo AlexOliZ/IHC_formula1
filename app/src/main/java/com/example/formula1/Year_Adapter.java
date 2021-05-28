@@ -1,6 +1,7 @@
 package com.example.formula1;
 
 import android.content.Context;
+import android.text.Editable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,6 +41,19 @@ public class Year_Adapter extends RecyclerView.Adapter<Year_Adapter.MyViewHolder
     }
 
     public Year_Adapter getAdapter(){return this;}
+
+    public void setFilter(String filter){
+        List<Integer> aux = new ArrayList<>();
+        for(Integer year: filter_championships){
+            if(Integer.toString(year).contains(filter)){
+                aux.add(year);
+            }
+        }
+        filter_championships.clear();
+        filter_championships.addAll(aux);
+        getFilter().filter(filter);
+        notifyDataSetChanged();
+    }
 
     @Override
     public void onBindViewHolder(@NonNull Year_Adapter.MyViewHolder holder, int position) {

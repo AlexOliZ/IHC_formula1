@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.TimeZone;
 
 public class Variables {
+
     public static List<Championship> championships = allChampionships();
     public static Race selected_race;
     public static List<String> names = new ArrayList<>(Arrays.asList(new String[]{"Lewis", "Vettel", "Lando", "Ricciardo", "Perez", "Sainz", "Alonso", "Verstappen", "Leclerc", "Russel"}));
@@ -23,7 +24,6 @@ public class Variables {
     public static int year = cal.get(Calendar.YEAR);
     public static int hour = cal.get(Calendar.HOUR_OF_DAY);
     public static boolean notify_all;
-
 
     private static List<Championship> allChampionships() {
         return new ArrayList<>(Arrays.asList(
