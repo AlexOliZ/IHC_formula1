@@ -67,7 +67,6 @@ public class Settings extends Fragment {
         for(Race race: Variables.championships.get(Variables.championships.size()-1).getRaces()){
             if(race.getNotify()){
                 races.add(race);
-                System.out.println(race.getName());
             }
         }
 

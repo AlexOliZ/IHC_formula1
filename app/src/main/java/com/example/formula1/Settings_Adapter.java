@@ -56,11 +56,16 @@ public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.MyVi
         holder.notification_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                for(Race race: Variables.championships.get(Variables.championships.size()-1).getRaces()){
-                    if(race.getName().equals(races.get(position).getName())){
-                        if(race.getNotify())
-                            race.Notify();
-                        break;
+                for(int i=0 ; i<Variables.championships.get(Variables.championships.size()-1).getRaces().size() ; i++){
+                    if(Variables.championships.get(Variables.championships.size()-1).getRaces().get(i).getName().equals(races.get(position).getName())){
+                        if(Variables.championships.get(Variables.championships.size()-1).getRaces().get(i).getNotify()) {
+                            Variables.championships.get(Variables.championships.size() - 1).getRaces().get(i).Notify();
+                            races.remove(position);
+                            notifyItemRemoved(position);
+                            notifyDataSetChanged();
+                            break;
+                        }
+
                     }
                 }
             }
