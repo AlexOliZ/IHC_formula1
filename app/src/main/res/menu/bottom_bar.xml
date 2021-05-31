@@ -4,7 +4,7 @@
     <item
         android:id="@+id/Schedule"
         android:title="Schedule"
-        android:icon="@drawable/ic_baseline_home_24" />
+        android:icon="@drawable/schedule_icon" />
     <item
         android:id="@+id/Forum"
         android:title="Forum"
@@ -12,7 +12,7 @@
     <item
         android:id="@+id/Teams"
         android:title="Teams"
-        android:icon="@drawable/ic_baseline_pilot_24"/>
+        android:icon="@drawable/teams_icon"/>
     <item
         android:id="@+id/Statistics"
         android:title="Statistics"
