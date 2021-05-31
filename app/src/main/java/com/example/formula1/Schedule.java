@@ -77,10 +77,10 @@ public class Schedule extends Fragment {
         int position=0;
         if(Variables.year == Variables.cal.get(Calendar.YEAR)) {
             for (int i = 0; i < Variables.selected_champ.getRaces().size(); i++) {
-                if (Variables.selected_champ.getRaces().get(i).getMonth() == Variables.cal.get(Calendar.MONTH) + 1 && Variables.selected_champ.getRaces().get(i).getDay() >= Variables.cal.get(Calendar.DAY_OF_MONTH)) {
+                if (Variables.selected_champ.getRaces().get(i).getMonth() == Variables.month + 1 && Variables.selected_champ.getRaces().get(i).getDay() >= Variables.day) {
                     position = i;
                     break;
-                } else if (Variables.selected_champ.getRaces().get(i).getMonth() >= Variables.cal.get(Calendar.MONTH) + 1 || Variables.selected_champ.getRaces().get(i).getDay() >= Variables.cal.get(Calendar.DAY_OF_MONTH)) {
+                } else if (Variables.selected_champ.getRaces().get(i).getMonth() >= Variables.month + 1) {
                     position = i;
                     break;
                 }
@@ -89,7 +89,6 @@ public class Schedule extends Fragment {
         /* year -> pop up textview e quando escolher o ano cria um novo adapter com as corridas desse ano*/
         adapter = new MyAdapter(getActivity(),context);
         recyclerView.setAdapter(adapter);
-        System.out.println(position);
         recyclerView.smoothScrollToPosition(position);
         return view;
     }
