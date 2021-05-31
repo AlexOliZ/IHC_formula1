@@ -64,6 +64,7 @@ public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.MyVi
                             races.remove(position);
                             notifyItemRemoved(position);
                             notifyDataSetChanged();
+                            Variables.notify_all=false;
                             break;
                         }
                     }

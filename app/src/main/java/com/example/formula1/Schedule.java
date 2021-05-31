@@ -57,7 +57,6 @@ public class Schedule extends Fragment {
         super.onCreate(savedInstanceState);
         setHasOptionsMenu(true);
         context = getActivity();
-        Variables.month = Variables.cal.get(Calendar.MONTH);
     }
 
     @Override
@@ -89,7 +88,7 @@ public class Schedule extends Fragment {
         /* year -> pop up textview e quando escolher o ano cria um novo adapter com as corridas desse ano*/
         adapter = new MyAdapter(getActivity(),context);
         recyclerView.setAdapter(adapter);
-        recyclerView.smoothScrollToPosition(position+2);
+        recyclerView.smoothScrollToPosition(position);
         return view;
     }
 

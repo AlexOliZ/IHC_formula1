@@ -1,5 +1,10 @@
 package com.example.formula1;
 
+import android.graphics.Color;
+import android.view.View;
+
+import java.util.Calendar;
+
 public class Race {
     private String name;
     private String country;
@@ -11,7 +16,6 @@ public class Race {
     private int length;
     private int hours;
     private boolean notify;
-    private boolean favorite;
     // Activity context;
 
     public Race(String name, String country, String description, int day, int month, int year, int hours, int length){
@@ -26,7 +30,25 @@ public class Race {
         this.length = length;
         this.hours = hours;
         this.notify=false;
-        this.favorite=false;
+    }
+
+    public boolean check_Notify(){
+        if(this.year>Variables.year)
+            return true;
+        if(this.year == Variables.year){
+            if(this.month>Variables.month+1)
+                return true;
+            if(Variables.month+1==this.month){
+                if(this.day>Variables.day)
+                    return true;
+                if(this.day==Variables.day){
+                    if(this.hours>Variables.hour)
+                        return true;
+                }
+            }
+        }
+
+        return false;
     }
 
     public String getName(){ return this.name; }
@@ -41,6 +63,4 @@ public class Race {
     public int getHours(){return this.hours;}
     public boolean getNotify(){ return this.notify; }
     public void Notify(){this.notify=!this.notify;}
-    public boolean getFavorite(){ return this.favorite; }
-    public void Favorite(){this.favorite=!this.favorite;}
 }
