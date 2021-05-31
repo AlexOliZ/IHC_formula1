@@ -73,6 +73,10 @@ public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.MyVi
         });
     }
 
+    public void updateData(){
+        notifyDataSetChanged();
+    }
+
     @Override
     public long getItemId(int position) {
         Settings_Adapter adapter = getAdapter();

@@ -34,6 +34,18 @@ import java.util.List;
 public class Settings extends Fragment {
     private View view;
     private Context context;
+
+    public List<Race> getRace_Notifications(){
+        List<Race> races = new ArrayList<>();
+        for(Race race: Variables.championships.get(Variables.championships.size()-1).getRaces()){
+            if(race.getNotify() && race.check_Notify()){
+                races.add(race);
+                System.out.println(race.getName());
+            }
+        }
+        return races;
+    }
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,15 +66,9 @@ public class Settings extends Fragment {
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.notifications_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
-        List<Race> races = new ArrayList<>();
-        for(Race race: Variables.championships.get(Variables.championships.size()-1).getRaces()){
-            if(race.getNotify() && race.check_Notify()){
-                races.add(race);
-                System.out.println(race.getName());
-            }
-        }
 
-        Settings_Adapter notifcations_adapter = new Settings_Adapter(getActivity(),context,races);
+
+        Settings_Adapter notifcations_adapter = new Settings_Adapter(getActivity(),context,getRace_Notifications());
         recyclerView.setAdapter(notifcations_adapter);
 
         CheckBox notify_all = (CheckBox) view.findViewById(R.id.box_all);
@@ -75,7 +81,8 @@ public class Settings extends Fragment {
                     }
                 }
                 Variables.notify_all = !Variables.notify_all;
-                notifcations_adapter.notifyDataSetChanged();
+                Settings_Adapter notifcations_adapter = new Settings_Adapter(getActivity(),context,getRace_Notifications());
+                recyclerView.setAdapter(notifcations_adapter);
             }
         });
 
@@ -94,8 +101,8 @@ public class Settings extends Fragment {
                         System.out.println(Variables.championships.get(Variables.championships.size() - 1).getRaces().get(i).getNotify());
                         if(!Variables.championships.get(Variables.championships.size() - 1).getRaces().get(i).getNotify())
                             Variables.championships.get(Variables.championships.size() - 1).getRaces().get(i).Notify();
-                        notifcations_adapter.notifyDataSetChanged();
-                        System.out.println(Variables.championships.get(Variables.championships.size() - 1).getRaces().get(i).getNotify());
+                        Settings_Adapter notifcations_adapter = new Settings_Adapter(getActivity(),context,getRace_Notifications());
+                        recyclerView.setAdapter(notifcations_adapter);
                     }
                 }
             }
