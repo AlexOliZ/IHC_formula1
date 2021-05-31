@@ -1,6 +1,7 @@
 package com.example.formula1;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,12 +66,10 @@ public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.MyVi
                             notifyDataSetChanged();
                             break;
                         }
-
                     }
                 }
             }
         });
-
     }
 
     @Override

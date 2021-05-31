@@ -1,64 +1,137 @@
 package com.example.formula1;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuInflater;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.SearchView;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link Forum#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+
+import java.util.ArrayList;
+
+import static android.app.Activity.RESULT_OK;
+
 public class Forum extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public Forum() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment Forum.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static Forum newInstance(String param1, String param2) {
-        Forum fragment = new Forum();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
+    private static final ArrayList<Topic> topics = new ArrayList<>();
+    Topic topic;
+    public static final int TEXT_REQUEST = 1;
+    private RecyclerView mRecyclerView;
+    private TopicAdapter mAdapter;
+    Context context;
+    private SearchView search_topic;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
+        setHasOptionsMenu(true);
+        context = getActivity();
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_forum, container, false);
+
+        View view = inflater.inflate(R.layout.fragment_forum, container, false);
+        setUpToolbar(view);
+
+        mRecyclerView = view.findViewById(R.id.recyclerview);
+        // Create an adapter and supply the data to be displayed.
+        mAdapter = new TopicAdapter(context, topics);
+        // Connect the adapter with the RecyclerView.
+        mRecyclerView.setAdapter(mAdapter);
+        // Give the RecyclerView a default layout manager.
+        mRecyclerView.setLayoutManager(new LinearLayoutManager(context));
+
+        FloatingActionButton fabbutton = view.findViewById(R.id.floatingActionButton5);
+        fabbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(getActivity(), AddTopic.class);
+                startActivityForResult(intent,TEXT_REQUEST);
+            }
+        });
+
+        return view;
+
     }
+
+    private void setUpToolbar(View view) {
+        Toolbar toolbar = view.findViewById(R.id.search_menu);
+        AppCompatActivity activity = (AppCompatActivity) getActivity();
+        if (activity != null) {
+            activity.setSupportActionBar(toolbar);
+        }
+    }
+
+    @Override
+    public void onCreateOptionsMenu(Menu menu, MenuInflater inflater) {
+
+        inflater.inflate(R.menu.forum_search, menu);
+        super.onCreateOptionsMenu(menu, inflater);
+
+        MenuItem search_race_item = menu.findItem(R.id.search_topic);
+
+        search_race_item.setShowAsAction(MenuItem.SHOW_AS_ACTION_ALWAYS);
+
+        search_topic = (SearchView) search_race_item.getActionView();
+        search_topic.setMaxWidth(Integer.MAX_VALUE);
+        search_topic.setQueryHint("Search Topic");
+
+        search_topic.setOnQueryTextListener(new SearchView.OnQueryTextListener(){
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                mAdapter.getFilter().filter(newText);
+                return false;
+            }
+        });
+
+    }
+
+    @Override
+    public void onActivityResult(int requestCode,
+                                 int resultCode, Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        if (requestCode == TEXT_REQUEST && resultCode == RESULT_OK) {
+            String replyTitle = data.getStringExtra(AddTopic.title);
+            String replyDesc = data.getStringExtra(AddTopic.desc);
+            String replyKeyword = data.getStringExtra(AddTopic.keyword);
+            topic = new Topic(replyTitle,replyDesc,replyKeyword);
+            topics.add(0,topic);
+            mAdapter = new TopicAdapter(context, topics);
+            // Connect the adapter with the RecyclerView.
+            mRecyclerView.setAdapter(mAdapter);
+        }
+    }
+
+    public static Topic giveObject() {
+        return topics.get(TopicAdapter.givepos());
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        mAdapter = new TopicAdapter(context, topics);
+        // Connect the adapter with the RecyclerView.
+        mRecyclerView.setAdapter(mAdapter);
+    }
+
 }

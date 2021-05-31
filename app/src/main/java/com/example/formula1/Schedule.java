@@ -89,7 +89,7 @@ public class Schedule extends Fragment {
         /* year -> pop up textview e quando escolher o ano cria um novo adapter com as corridas desse ano*/
         adapter = new MyAdapter(getActivity(),context);
         recyclerView.setAdapter(adapter);
-        recyclerView.smoothScrollToPosition(position);
+        recyclerView.smoothScrollToPosition(position+2);
         return view;
     }
 

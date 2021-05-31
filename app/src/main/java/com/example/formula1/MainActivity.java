@@ -52,7 +52,7 @@ public class MainActivity extends AppCompatActivity {
                         selectedFragment = new Forum();
                         break;
                     case R.id.Teams:
-                        selectedFragment = new Teams();
+                        selectedFragment = new DashboardFragment();
                         break;
                     case R.id.Statistics:
                         selectedFragment = new Statistics();

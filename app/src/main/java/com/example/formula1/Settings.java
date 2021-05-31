@@ -52,13 +52,7 @@ public class Settings extends Fragment {
         EditText race_notification = (EditText) view.findViewById(R.id.add_race_notification);
         /*limpar texto quando clicar*/
 
-        EditText championship_notification = (EditText) view.findViewById(R.id.add_championship_notification);
-        /*limpar texto quando clicar*/
-
         ImageButton add_race_notification = (ImageButton) view.findViewById(R.id.add_race_button_notification);
-
-        ImageButton add_championship_notification = (ImageButton) view.findViewById(R.id.add_championship_button_notification);
-        /* set year */
 
         RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.notifications_list);
         recyclerView.setLayoutManager(new LinearLayoutManager(context));
@@ -67,6 +61,7 @@ public class Settings extends Fragment {
         for(Race race: Variables.championships.get(Variables.championships.size()-1).getRaces()){
             if(race.getNotify()){
                 races.add(race);
+                System.out.println(race.getName());
             }
         }
 
