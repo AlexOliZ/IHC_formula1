@@ -60,7 +60,7 @@ public class Table_Adapter extends RecyclerView.Adapter<Table_Adapter.MyViewHold
             @Override
             public void onClick(View v) {
                 FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView, new Teams());
+                fragmentTransaction.replace(R.id.fragmentContainerView, new Pilots());
                 fragmentTransaction.commit();
             }
         });
@@ -69,7 +69,7 @@ public class Table_Adapter extends RecyclerView.Adapter<Table_Adapter.MyViewHold
             @Override
             public void onClick(View arg0) {
                 FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView, new Teams());
+                fragmentTransaction.replace(R.id.fragmentContainerView, new DashboardFragment());
                 fragmentTransaction.commit();
             }
         });
