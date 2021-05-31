@@ -33,8 +33,8 @@ public class Statistics extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_statistics, container, false);
 
-        for(int i = 0; i < 30; i++){
-            teams.add(new Points(i,"i+1","i+2",i+3));
+        for(int i = 0; i < 20; i++){
+            teams.add(new Points(Variables.positions.get(i), Variables.names.get(i), Variables.teams.get(i), Variables.points.get(i)));
         }
 
         mRecyclerView = view.findViewById(R.id.recyclerview);

@@ -41,14 +41,14 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.Wo
 
     @Override
     public void onBindViewHolder(@NonNull WordViewHolder holder, int position) {
-        String standing = Integer.toString(standings.get(position).getStanding());
-        holder.standingView.setText(""+standing);
+        String standing = standings.get(position).getStanding();
+        holder.standingView.setText(standing);
         String pilot = standings.get(position).getPilot();
-        holder.pilotView.setText("pilot:"+pilot);
+        holder.pilotView.setText(pilot);
         String team = standings.get(position).getTeam();
-        holder.teamView.setText("team:"+team);
-        String points = Integer.toString(standings.get(position).getPoints());
-        holder.pointsView.setText(""+points);
+        holder.teamView.setText(team);
+        String points = standings.get(position).getPoints();
+        holder.pointsView.setText(points);
     }
 
     @Override

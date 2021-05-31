@@ -15,6 +15,7 @@ public class Variables {
     public static List<String> names = new ArrayList<>(Arrays.asList(new String[]{"Lewis", "Bottas","Vettel", "Lando", "Ricciardo", "Perez","Verstappen", "Sainz", "Alonso", "Leclerc", "Russel","Stroll","Latifi","Gasly","Tsunoda","Ocon","Schumacher","Nikita","Giovinazzi","Raikkonen"}));
     public static List<String> teams = new ArrayList<>(Arrays.asList(new String[]{"Mercedes", "Mercedes","Aston Martin", "Mclaren", "Mclaren", "Redbull", "Redbull","Ferrari", "Alpine", "Ferrari", "Williams","Aston Martin","Williams","ToroRosso","ToroRosso","Alpine","Haas","Haas","Alfa Romeo","Alfa Romeo"}));
     public static List<String>positions = new ArrayList<>(Arrays.asList(new String[]{"1", "2", "3", "4", "5", "6", "7", "8", "9", "10","11", "12", "13", "14", "15", "16", "17", "18", "19", "20"}));
+    public static List<String> points = new ArrayList<>(Arrays.asList(new String[]{"105", "101", "56", "47", "44", "40", "38", "24", "16", "12","10", "9", "5", "2", "1", "0", "0", "0", "0", "0"}));
     public static Championship selected_champ = championships.get(championships.size()-1);
     public static int selected_year = 2021;
     public static ArrayList<Integer> years = new ArrayList<>(Arrays.asList(2005,2006,2007,2008,2009,2010,2011,2012,2013,2014,2015,2016,2017,2018,2019,2020,2021));

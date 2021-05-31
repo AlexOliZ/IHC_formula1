@@ -1,23 +1,23 @@
 package com.example.formula1;
 
 public class Points {
-    private int Standing;
+    private String Standing;
     private String Pilot;
     private String Team;
-    private int Points;
+    private String Points;
 
-    public Points(int s, String p, String t, int pts){
+    public Points(String s, String p, String t, String pts){
         this.Standing=s;
         this.Pilot=p;
         this.Team=t;
         this.Points=pts;
     }
 
-    public int getPoints() {
+    public String getPoints() {
         return Points;
     }
 
-    public int getStanding() {
+    public String getStanding() {
         return Standing;
     }
 
