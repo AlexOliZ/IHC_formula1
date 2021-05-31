@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -12,26 +13,26 @@ import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.List;
+
 public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.MyViewHolder>{
-    private Race race;
     private Context context;
     private FragmentActivity activity;
+    private List<Race> races;
     /* if true notifca todas as corridas */
     /* notification settings notify_races */
     private boolean notification = false;
 
-    public Settings_Adapter(FragmentActivity activity , Context context,Race race){
-        this.race = race;
+    public Settings_Adapter(FragmentActivity activity , Context context, List<Race> races){
         this.context = context;
         this.activity = activity;
+        this.races = races;
     }
-
-    public void notify_races(){this.notification= !this.notification;}
 
     @NonNull
     @Override
     public Settings_Adapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.race_table,parent,false);
+        View view = LayoutInflater.from(context).inflate(R.layout.settings_row,parent,false);
         return new Settings_Adapter.MyViewHolder(view);
     }
 
@@ -39,29 +40,31 @@ public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.MyVi
 
     @Override
     public void onBindViewHolder(@NonNull Settings_Adapter.MyViewHolder holder, int position) {
-        String name = Variables.names.get(position);
-        String p = Variables.positions.get(position);
-        String team = Variables.teams.get(position);
-
-        holder.pilot_name.setText(name);
-        holder.pilot_position.setText(p);
-        holder.team_name.setText(team);
-
-        holder.pilot_name.setOnClickListener(new View.OnClickListener() {
+        holder.notification_name.setText(races.get(position).getName());
+        System.out.println(races.get(position).getName());
+        holder.notification_name.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                Variables.selected_race = races.get(position);
+                Variables.selected_year = Variables.championships.get(Variables.championships.size()-1).getYear();
                 FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView, new Teams());
+                fragmentTransaction.replace(R.id.fragmentContainerView, new Race_Info());
                 fragmentTransaction.commit();
             }
         });
 
-        holder.team_name.setOnClickListener(new View.OnClickListener() {
+        holder.notification_delete.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
-                fragmentTransaction.replace(R.id.fragmentContainerView, new Teams());
-                fragmentTransaction.commit();
+                /*
+                for(Race race: Variables.championships.get(Variables.championships.size()-1).getRaces()){
+                    if(race.getName().equals(races.get(position).getName())){
+                        race.Notify();
+                        races.remove(position);
+                        break;
+                    }
+                }
+                */
             }
         });
 
@@ -74,20 +77,16 @@ public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.MyVi
     }
 
     @Override
-    public int getItemCount() {
-        return Variables.names.size();
-    }
+    public int getItemCount() { return races.size(); }
 
     public static class MyViewHolder extends RecyclerView.ViewHolder{
-        TextView pilot_name;
-        TextView team_name;
-        TextView pilot_position;
+        TextView notification_name;
+        ImageView notification_delete;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
-            pilot_name = itemView.findViewById(R.id.pilot_name);
-            team_name = itemView.findViewById(R.id.pilot_team);
-            pilot_position = itemView.findViewById(R.id.pilot_position);
+            notification_name = itemView.findViewById(R.id.name);
+            notification_delete = itemView.findViewById(R.id.delete);
         }
     }
 

@@ -58,8 +58,6 @@ public class Year_Adapter extends RecyclerView.Adapter<Year_Adapter.MyViewHolder
     @Override
     public void onBindViewHolder(@NonNull Year_Adapter.MyViewHolder holder, int position) {
         int year = filter_championships.get(position);
-        System.out.println(year);
-        System.out.println(position);
         holder.champ_year.setText(Integer.toString(year));
 
         holder.champ_year.setOnClickListener(new View.OnClickListener() {

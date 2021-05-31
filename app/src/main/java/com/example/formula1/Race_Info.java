@@ -78,7 +78,6 @@ public class    Race_Info extends Fragment {
         });
 
 
-
         CheckBox race_notify = (CheckBox) view.findViewById(R.id.notify_button);
         race_notify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -95,24 +94,7 @@ public class    Race_Info extends Fragment {
             }
         });
 
-        CheckBox race_favorite = (CheckBox) view.findViewById(R.id.favorites_button);
-        race_favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                // Do something here.
-                for(Championship c: Variables.championships) {
-                    if(c.getYear()==Variables.selected_year) {
-                        for (Race r : c.getRaces()) {
-                            if (r.getDay() == Variables.selected_race.getDay() && r.getMonth() == Variables.selected_race.getMonth())
-                                r.Favorite();
-                        }
-                    }
-                }
-            }
-        });
-
         race_notify.setChecked(Variables.selected_race.getNotify());
-        race_favorite.setChecked(Variables.selected_race.getFavorite());
 
         VideoView video = (VideoView)view.findViewById(R.id.race_video);
         String videoPath = "android.resource://"+context.getPackageName()+"/"+R.raw.video;

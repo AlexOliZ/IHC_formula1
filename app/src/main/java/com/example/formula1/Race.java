@@ -33,7 +33,7 @@ public class Race {
     public String getCountry(){ return this.country; }
     public int getImage(){ return this.image; }
     public String getDescription(){ return this.description; }
-    public String getDate(){ return Integer.toString(this.day) + "/" + Integer.toString(this.month) + "/" + Integer.toString(this.year) + "  " + this.hours + "h\n"; }
+    public String getDate(){ return Integer.toString(this.day) + "/" + Integer.toString(this.month) + "/" + Integer.toString(this.year);}
     public String getLength(){ return Integer.toString(this.length)+ " km"; }
     public int getYear(){ return this.year; }
     public int getMonth(){ return this.month; }

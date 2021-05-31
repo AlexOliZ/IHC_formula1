@@ -9,6 +9,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -25,7 +26,9 @@ import android.widget.SearchView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 
 public class Settings extends Fragment {
     private View view;
@@ -53,29 +56,23 @@ public class Settings extends Fragment {
         /*limpar texto quando clicar*/
 
         ImageButton add_race_notification = (ImageButton) view.findViewById(R.id.add_race_button_notification);
-        /* set favorite */
 
         ImageButton add_championship_notification = (ImageButton) view.findViewById(R.id.add_championship_button_notification);
         /* set year */
 
+        RecyclerView recyclerView = (RecyclerView)view.findViewById(R.id.notifications_list);
+        recyclerView.setLayoutManager(new LinearLayoutManager(context));
 
+        List<Race> races = new ArrayList<>();
+        for(Race race: Variables.championships.get(Variables.championships.size()-1).getRaces()){
+            if(race.getNotify()){
+                races.add(race);
+                System.out.println(race.getName());
+            }
+        }
 
-        EditText race_favorite = (EditText) view.findViewById(R.id.add_race);
-        /*limpar texto quando clicar*/
-
-        EditText championship_favorite = (EditText) view.findViewById(R.id.add_championship);
-        /*limpar texto quando clicar*/
-
-        ImageButton add_race_favorite = (ImageButton) view.findViewById(R.id.add_race_button);
-        /* set favorite */
-
-        ImageButton add_championship_favorite = (ImageButton) view.findViewById(R.id.add_championship_button);
-        /* set year */
-
-
-        /*
-            criar adapters ... o mesmo para notifications e favorites
-        */
+        Settings_Adapter notifcations_adapter = new Settings_Adapter(getActivity(),context,races);
+        recyclerView.setAdapter(notifcations_adapter);
 
         return view;
     }

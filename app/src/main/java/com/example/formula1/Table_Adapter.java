@@ -25,21 +25,17 @@ import java.util.TimeZone;
 
 
 public class Table_Adapter extends RecyclerView.Adapter<Table_Adapter.MyViewHolder>{
-    private Race race;
+    private Race races;
     private final Context context;
     private FragmentActivity activity;
     /* if true notifca todas as corridas */
     /* notification settings notify_races */
-    private boolean notification = false;
 
     public Table_Adapter(FragmentActivity activity , Context context,Race race){
-        this.race = race;
-
+        this.races = race;
         this.context = context;
         this.activity = activity;
     }
-
-    public void notify_races(){this.notification= !this.notification;}
 
     @NonNull
     @Override

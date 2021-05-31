@@ -52,9 +52,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
     public void onBindViewHolder(@NonNull MyAdapter.MyViewHolder holder, int position) {
         Race race = filter_races.get(position);
         holder.race_name.setText(race.getName());
-        holder.race_date.setText(race.getDate());
+        holder.race_date.setText(race.getDate() + " " + Integer.toString(race.getHours()) + "h");
         holder.race_image.setImageResource(race.getImage());
-
+        System.out.println("month: "+Integer.toString(Variables.month));
+        System.out.println("day: "+Integer.toString(Variables.day));
         holder.race_image.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -66,7 +67,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         });
 
         holder.race_notify.setChecked(race.getNotify());
-        holder.race_favorite.setChecked(race.getFavorite());
 
         holder.race_notify.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -83,27 +83,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             }
         });
 
-        holder.race_favorite.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View arg0) {
-                // Do something here.
-                for(Championship c: Variables.championships) {
-                    if(c.getYear()==Variables.selected_year) {
-                        for (Race r : c.getRaces()) {
-                            if (r.getDay() == filter_races.get(position).getDay() && r.getMonth() == filter_races.get(position).getMonth())
-                                r.Favorite();
-                        }
-                    }
-                }
-            }
-        });
-
-        if(Variables.year > Variables.cal.get(Calendar.YEAR)){
+        if(Variables.selected_year < Variables.cal.get(Calendar.YEAR)){
             String warning = "SEE RESULTS "+ race.getDate();
             holder.race_date.setText(warning);
-            holder.race_date.setTextColor(Color.parseColor("#DD1515"));
+            holder.race_date.setTextColor(Color.parseColor("#000000"));
         }else if(Variables.year == race.getYear() ) {
-            if (Variables.month == race.getMonth()) {
+            if (Variables.month+1 == race.getMonth()) {
                 if (Variables.day == race.getDay()) {
                     // race TODAY AT
                     if(Variables.hour<=race.getHours()) {
@@ -118,25 +103,25 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
                         holder.race_date.setTextColor(Color.parseColor("#DD1515"));
                         holder.race_notify.setVisibility(View.INVISIBLE);
                     }
-                }else if (Variables.day - race.getDay() < 7) {
-                    String warning = "RACE IN " + Integer.toString(Variables.day - race.getDay()) + " DAYS";
-                    holder.race_date.setText(warning);
-                    holder.race_date.setTextColor(Color.parseColor("#DD1515"));
-                } else if (Variables.day < race.getDay()){
+                } else if (Variables.day > race.getDay()){
                     holder.race_date.setText("SEE RESULTS " + race.getDate());
                     holder.race_date.setTextColor(Color.parseColor("#000000"));
                     holder.race_notify.setVisibility(View.INVISIBLE);
+                }else if (race.getDay() - Variables.day< 7) {
+                    String warning = "RACE IN " + Integer.toString(race.getDay() - Variables.day) + " DAYS";
+                    holder.race_date.setText(warning);
+                    holder.race_date.setTextColor(Color.parseColor("#DD1515"));
                 }
-            } else if (Variables.month == race.getMonth()){
+            } else if (Variables.month+1 > race.getMonth()){
                 holder.race_date.setText("SEE RESULTS " + race.getDate());
                 holder.race_date.setTextColor(Color.parseColor("#000000"));
-                holder.race_notify.setVisibility(View.GONE);
+                holder.race_notify.setVisibility(View.INVISIBLE);
             }
+        }else if(Variables.year > race.getYear()){
+            holder.race_notify.setVisibility(View.INVISIBLE);
         }
         if (race.getNotify() || Variables.notify_all)
             holder.race_notify.setChecked(true);
-        if (race.getFavorite())
-            holder.race_favorite.setChecked(true);
     }
 
     @Override
@@ -192,7 +177,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         TextView race_date;
         ImageView race_image;
         CheckBox race_notify;
-        CheckBox race_favorite;
 
         public MyViewHolder(@NonNull View itemView){
             super(itemView);
@@ -200,7 +184,6 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             race_date = itemView.findViewById(R.id.race_date);
             race_image = itemView.findViewById(R.id.race_image);
             race_notify = itemView.findViewById(R.id.notify_button);
-            race_favorite = itemView.findViewById(R.id.favorites_button);
         }
     }
 }
