@@ -39,7 +39,7 @@ public class Statistics extends Fragment {
 
         mRecyclerView = view.findViewById(R.id.recyclerview);
         // Create an adapter and supply the data to be displayed.
-        mAdapter = new StatisticsAdapter(context, teams);
+        mAdapter = new StatisticsAdapter(getActivity(),context, teams);
         // Connect the adapter with the RecyclerView.
         mRecyclerView.setAdapter(mAdapter);
         // Give the RecyclerView a default layout manager.

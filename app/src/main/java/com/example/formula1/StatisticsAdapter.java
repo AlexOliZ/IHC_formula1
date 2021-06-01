@@ -11,6 +11,8 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.ArrayList;
@@ -20,13 +22,16 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.Wo
 
     private final ArrayList<Points> standings;
     private LayoutInflater mInflater;
+    private FragmentActivity activity;
+
     Context contexto;
     static int lastPos = 0;
 
-    public StatisticsAdapter(Context context,
+    public StatisticsAdapter(FragmentActivity activity,Context context,
                              ArrayList<Points> standings) {
         contexto = context;
         this.standings = standings;
+        this.activity = activity;
     }
 
     @NonNull
@@ -49,6 +54,23 @@ public class StatisticsAdapter extends RecyclerView.Adapter<StatisticsAdapter.Wo
         holder.teamView.setText(team);
         String points = standings.get(position).getPoints();
         holder.pointsView.setText(points);
+        holder.pilotView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainerView, new Pilots());
+                fragmentTransaction.commit();
+            }
+        });
+
+        holder.teamView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View arg0) {
+                FragmentTransaction fragmentTransaction = activity.getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.fragmentContainerView, new DashboardFragment());
+                fragmentTransaction.commit();
+            }
+        });
     }
 
     @Override

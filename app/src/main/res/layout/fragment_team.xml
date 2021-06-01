@@ -63,4 +63,26 @@
         app:layout_constraintVertical_bias="0.307"
         tools:src="@tools:sample/avatars" />
 
+    <RelativeLayout
+        android:layout_height="wrap_content"
+        android:layout_width="wrap_content">
+
+        <CheckBox
+            android:id="@+id/favs_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginStart="300dp"
+            android:layout_marginLeft="15dp"
+            android:layout_marginTop="239dp"
+            android:layout_marginEnd="192dp"
+            android:layout_marginRight="192dp"
+            android:layout_marginBottom="182dp"
+            android:layout_centerHorizontal="true"
+            android:background="@color/white"
+            android:button="@drawable/favorites" />
+    </RelativeLayout>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
