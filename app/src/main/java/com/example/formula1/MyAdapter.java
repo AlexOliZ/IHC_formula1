@@ -2,6 +2,7 @@ package com.example.formula1;
 
 import android.content.Context;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -11,6 +12,7 @@ import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -77,8 +79,15 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
                 for(Championship c: Variables.championships) {
                     if(c.getYear()==Variables.selected_year) {
                         for (Race r : c.getRaces()) {
-                            if (r.getDay() == filter_races.get(position).getDay() && r.getMonth() == filter_races.get(position).getMonth())
+                            if (r.getDay() == filter_races.get(position).getDay() && r.getMonth() == filter_races.get(position).getMonth()) {
                                 r.Notify();
+                                if(r.getNotify() == true){
+                                    Toast.makeText(context, "NOTIFICAÇÃO ADICIONADA", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(context, "NOTIFICAÇÃO REMOVIDA", Toast.LENGTH_SHORT).show();
+                                }
+                            }
                         }
                     }
                 }

@@ -18,6 +18,7 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.SearchView;
+import android.widget.Toast;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
@@ -195,6 +196,7 @@ public class Forum extends Fragment {
             mAdapter = new TopicAdapter(context, topics);
             // Connect the adapter with the RecyclerView.
             mRecyclerView.setAdapter(mAdapter);
+            Toast.makeText(context, "POST ADDED WITH SUCCESS!", Toast.LENGTH_LONG).show();
         }
     }
 

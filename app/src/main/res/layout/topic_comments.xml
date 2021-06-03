@@ -46,7 +46,7 @@
             android:textColor="@color/black"
             android:layout_height="100dp"
             android:layout_margin="10dp"
-            android:background="#FFFFFF"
+            android:background="@drawable/back"
             android:maxLines="4"
             android:scrollbars="vertical"
             android:textSize="20sp" />
@@ -86,7 +86,7 @@
             android:layout_height="50dp"
             android:textStyle="bold"
             android:textSize="18dp"
-            android:text="Comments"
+            android:text="Comment List"
             android:gravity="center"/>
 
         <androidx.recyclerview.widget.RecyclerView

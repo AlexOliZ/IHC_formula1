@@ -19,6 +19,7 @@ import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
 import android.widget.TextView;
+import android.widget.Toast;
 import android.widget.VideoView;
 
 import java.util.ArrayList;
@@ -86,8 +87,14 @@ public class    Race_Info extends Fragment {
                 for(Championship c: Variables.championships) {
                     if(c.getYear()==Variables.selected_year) {
                         for (Race r : c.getRaces()) {
-                            if (r.getDay() == Variables.selected_race.getDay() && r.getMonth() == Variables.selected_race.getMonth())
+                            if (r.getDay() == Variables.selected_race.getDay() && r.getMonth() == Variables.selected_race.getMonth()){
                                 r.Notify();
+                            if (r.getNotify() == true) {
+                                Toast.makeText(context, "NOTIFICAÇÃO ADICIONADA", Toast.LENGTH_SHORT).show();
+                            } else {
+                                Toast.makeText(context, "NOTIFICAÇÃO REMOVIDA", Toast.LENGTH_SHORT).show();
+                            }
+                        }
                         }
                     }
                 }

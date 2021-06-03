@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.FragmentActivity;
@@ -65,6 +66,7 @@ public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.MyVi
                             notifyItemRemoved(position);
                             notifyDataSetChanged();
                             Variables.notify_all=false;
+                            Toast.makeText(context, "NOTIFICAÇÃO REMOVIDA", Toast.LENGTH_SHORT).show();
                             break;
                         }
                     }

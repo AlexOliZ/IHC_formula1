@@ -22,7 +22,7 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.WordViewHold
     private final ArrayList<Topic> topics;
     private LayoutInflater mInflater;
     Context contexto;
-    private List<Topic> filter_topics;
+    private static List<Topic> filter_topics;
     static int lastPos = 0;
 
     public TopicAdapter(Context context,
@@ -118,5 +118,10 @@ public class TopicAdapter extends RecyclerView.Adapter<TopicAdapter.WordViewHold
     public static int givepos(){
         return lastPos;
     }
+
+    public static Topic givefilteredObject() {
+        return filter_topics.get(TopicAdapter.givepos());
+    }
+
 
 }
