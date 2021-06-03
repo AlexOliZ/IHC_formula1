@@ -74,7 +74,7 @@ public class Schedule extends Fragment {
         //search_race = (SearchView) view.findViewById(R.id.search_race);
 
         int position=0;
-        if(Variables.year == Variables.cal.get(Calendar.YEAR)) {
+        if(Variables.selected_year == Variables.cal.get(Calendar.YEAR)) {
             for (int i = 0; i < Variables.selected_champ.getRaces().size(); i++) {
                 if (Variables.selected_champ.getRaces().get(i).getMonth() == Variables.month + 1 && Variables.selected_champ.getRaces().get(i).getDay() >= Variables.day) {
                     position = i;

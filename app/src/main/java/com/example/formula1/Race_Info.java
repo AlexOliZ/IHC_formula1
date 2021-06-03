@@ -18,6 +18,7 @@ import android.widget.CheckBox;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.MediaController;
+import android.widget.ScrollView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.VideoView;
@@ -42,6 +43,9 @@ public class    Race_Info extends Fragment {
         // Inflate the layout for this fragment
 
         view = inflater.inflate(R.layout.fragment_race__information,container,false);
+
+        ScrollView sv =  view.findViewById(R.id.myscrollview);
+        sv.smoothScrollTo(0,0);
 
         ImageView race_image = (ImageView) view.findViewById(R.id.race_info_image);
         race_image.setImageResource(Variables.selected_race.getImage());
@@ -89,12 +93,13 @@ public class    Race_Info extends Fragment {
                         for (Race r : c.getRaces()) {
                             if (r.getDay() == Variables.selected_race.getDay() && r.getMonth() == Variables.selected_race.getMonth()){
                                 r.Notify();
-                            if (r.getNotify() == true) {
-                                Toast.makeText(context, "NOTIFICAÇÃO ADICIONADA", Toast.LENGTH_SHORT).show();
-                            } else {
-                                Toast.makeText(context, "NOTIFICAÇÃO REMOVIDA", Toast.LENGTH_SHORT).show();
+                                if(r.getNotify() == true){
+                                    Toast.makeText(context, "NOTIFICATION ADDED WITH SUCCESS!", Toast.LENGTH_SHORT).show();
+                                }
+                                else{
+                                    Toast.makeText(context, "NOTIFICATION REMOVED WITH SUCCESS!", Toast.LENGTH_SHORT).show();
+                                }
                             }
-                        }
                         }
                     }
                 }

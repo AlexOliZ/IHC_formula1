@@ -66,7 +66,7 @@ public class Settings_Adapter extends RecyclerView.Adapter<Settings_Adapter.MyVi
                             notifyItemRemoved(position);
                             notifyDataSetChanged();
                             Variables.notify_all=false;
-                            Toast.makeText(context, "NOTIFICAÇÃO REMOVIDA", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(context, "NOTIFICATION REMOVED WITH SUCCESS!", Toast.LENGTH_SHORT).show();
                             break;
                         }
                     }

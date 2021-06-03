@@ -18,6 +18,7 @@ import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.InputMethodManager;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
@@ -95,16 +96,21 @@ public class Settings extends Fragment {
         race_notification_button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View arg0) {
-                System.out.println(race_notification.getText());
+
                 for(int i=0 ; i<Variables.championships.get(Variables.championships.size()-1).getRaces().size() ; i++){
                     if(Variables.championships.get(Variables.championships.size()-1).getRaces().get(i).getName().toLowerCase().equals(race_notification.getText().toString().trim().toLowerCase())){
-                        System.out.println(Variables.championships.get(Variables.championships.size() - 1).getRaces().get(i).getNotify());
+
                         if(!Variables.championships.get(Variables.championships.size() - 1).getRaces().get(i).getNotify())
                             Variables.championships.get(Variables.championships.size() - 1).getRaces().get(i).Notify();
                         Settings_Adapter notifcations_adapter = new Settings_Adapter(getActivity(),context,getRace_Notifications());
                         recyclerView.setAdapter(notifcations_adapter);
+
                     }
                 }
+                race_notification.setText("");
+                InputMethodManager imm = (InputMethodManager) context.getSystemService(context.INPUT_METHOD_SERVICE);
+                imm.hideSoftInputFromWindow(race_notification.getWindowToken(), 0);
+                Toast.makeText(context, "NOTIFICATION ADDED WITH SUCCESS!", Toast.LENGTH_LONG).show();
             }
         });
 

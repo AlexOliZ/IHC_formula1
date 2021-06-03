@@ -82,10 +82,10 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
                             if (r.getDay() == filter_races.get(position).getDay() && r.getMonth() == filter_races.get(position).getMonth()) {
                                 r.Notify();
                                 if(r.getNotify() == true){
-                                    Toast.makeText(context, "NOTIFICAÇÃO ADICIONADA", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "NOTIFICATION ADDED WITH SUCCESS!", Toast.LENGTH_SHORT).show();
                                 }
                                 else{
-                                    Toast.makeText(context, "NOTIFICAÇÃO REMOVIDA", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(context, "NOTIFICATION REMOVED WITH SUCCESS!", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         }
