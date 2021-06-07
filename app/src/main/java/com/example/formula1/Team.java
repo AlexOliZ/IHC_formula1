@@ -20,6 +20,8 @@ import androidx.navigation.NavController;
 public class Team extends Fragment {
 
     private static String s;
+    private static String name1;
+    private static String name2;
     private static int img;
     private static int imgp1;
     private static int imgp2;
@@ -27,12 +29,16 @@ public class Team extends Fragment {
     private static ImageView p1Img;
     private static ImageView p2Img;
     private static TextView mainS;
+    private static TextView na1;
+    private static TextView na2;
 
-    public Team(String s, int img, int imgp1, int imgp2) {
+    public Team(String s, int img, int imgp1, int imgp2, String name1, String name2) {
         this.s=s;
         this.img=img;
         this.imgp1=imgp1;
         this.imgp2=imgp2;
+        this.name1=name1;
+        this.name2=name2;
     }
 
 
@@ -46,6 +52,8 @@ public class Team extends Fragment {
         p1Img.setImageDrawable(ContextCompat.getDrawable(getActivity(), imgp1));
         p2Img.setImageDrawable(ContextCompat.getDrawable(getActivity(), imgp2));
         mainS.setText(s);
+        na1.setText(name1);
+        na2.setText(name2);
     }
 
     @Override
@@ -58,6 +66,8 @@ public class Team extends Fragment {
         p2Img=(ImageView) view.findViewById(R.id.imgTeamP2);
         p2Img.setOnClickListener(this::onClick);
         mainS=(TextView) view.findViewById(R.id.textTeam);
+        na1=(TextView) view.findViewById(R.id.namePilot1);
+        na2=(TextView) view.findViewById(R.id.namePilot2);
         setData();
         return view;
     }
