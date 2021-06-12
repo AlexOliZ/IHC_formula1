@@ -122,15 +122,22 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
         @Override
         protected FilterResults performFiltering(CharSequence constraint) {
             ArrayList<Race> filterd_list = new ArrayList<>();
-
             if(constraint == null){
                 filterd_list.addAll(Variables.selected_champ.getRaces());
             }else{
                 String filter_query = constraint.toString().toLowerCase().trim();
+                String[] filter_list = filter_query.split(" ");
+                boolean check;
                 for(Championship championship: Variables.championships) {
                     for (Race race : championship.getRaces()) {
-                        String filter_string = race.getDate() + ' ' + race.getName().toLowerCase() + ' ' + race.getDate();
-                        if (filter_string.contains(filter_query))
+                        check = true;
+                        String filter_string = race.getDate() +' '+ race.getName().toLowerCase() +' '+ race.getCountry().toLowerCase();
+                        //if (filter_string.contains(filter_query))
+                        for(String str: filter_list){
+                            if(!filter_string.contains(str))
+                                check=false;
+                        }
+                        if(check)
                             filterd_list.add(race);
                     }
                 }
