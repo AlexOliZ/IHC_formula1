@@ -24,12 +24,14 @@ public class Year_Adapter extends RecyclerView.Adapter<Year_Adapter.MyViewHolder
     private List<Integer> filter_championships = new ArrayList<>();
     private Context context;
     private FragmentActivity activity;
+    private List<Integer> years;
 
 
-    public Year_Adapter(FragmentActivity activity , Context context){
+    public Year_Adapter(FragmentActivity activity , Context context, List<Integer> years){
         this.filter_championships = Variables.years;
         this.context = context;
         this.activity = activity;
+        this.years = years;
     }
 
     @NonNull
@@ -57,7 +59,7 @@ public class Year_Adapter extends RecyclerView.Adapter<Year_Adapter.MyViewHolder
 
     @Override
     public void onBindViewHolder(@NonNull Year_Adapter.MyViewHolder holder, int position) {
-        int year = filter_championships.get(position);
+        int year = years.get(position);
         holder.champ_year.setText(Integer.toString(year));
 
         holder.champ_year.setOnClickListener(new View.OnClickListener() {
@@ -83,7 +85,7 @@ public class Year_Adapter extends RecyclerView.Adapter<Year_Adapter.MyViewHolder
 
     @Override
     public int getItemCount() {
-        return filter_championships.size();
+        return years.size();
     }
 
     @Override

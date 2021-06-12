@@ -77,7 +77,7 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
             public void onClick(View arg0) {
                 // Do something here.
                 for(Championship c: Variables.championships) {
-                    if(c.getYear()==Variables.selected_year) {
+                    if(c.getYear()==filter_races.get(position).getYear()) {
                         for (Race r : c.getRaces()) {
                             if (r.getDay() == filter_races.get(position).getDay() && r.getMonth() == filter_races.get(position).getMonth()) {
                                 r.Notify();
@@ -127,9 +127,12 @@ public class MyAdapter extends RecyclerView.Adapter<MyAdapter.MyViewHolder> impl
                 filterd_list.addAll(Variables.selected_champ.getRaces());
             }else{
                 String filter_query = constraint.toString().toLowerCase().trim();
-                for(Race race: Variables.selected_champ.getRaces()){
-                    if(race.getName().toLowerCase().contains(filter_query))
-                        filterd_list.add(race);
+                for(Championship championship: Variables.championships) {
+                    for (Race race : championship.getRaces()) {
+                        String filter_string = race.getDate() + ' ' + race.getName().toLowerCase() + ' ' + race.getDate();
+                        if (filter_string.contains(filter_query))
+                            filterd_list.add(race);
+                    }
                 }
             }
 

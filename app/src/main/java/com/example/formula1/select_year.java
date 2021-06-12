@@ -8,6 +8,8 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 
 public class select_year extends Fragment {
 
@@ -53,21 +56,31 @@ public class select_year extends Fragment {
 
 
         EditText search_year = (EditText) view.findViewById(R.id.search_champ_year);
-        /*
-        search_year.setOnFocusChangeListener(new View.OnFocusChangeListener() {
 
+        search_year.addTextChangedListener(new TextWatcher() {
             @Override
-            public void onFocusChange(View v, boolean hasFocus) {
-
-                // When focus is lost check that the text field has valid values.
-
-                adapter.getFilter().filter(search_year.getText());
-
+            public void afterTextChanged(Editable s)  { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+                List<Integer> years = new ArrayList<>();
+                for(Championship c: Variables.championships){
+                    if(Integer.toString(c.getYear()).contains(search_year.getText()))
+                        years.add(c.getYear());
+                }
+                System.out.println(years);
+                adapter = new Year_Adapter(getActivity(),context,years);
+                recyclerView.setAdapter(adapter);
+                recyclerView.smoothScrollToPosition((int)(adapter.getItemCount()/2));
             }
         });
-        */
 
-        adapter = new Year_Adapter(getActivity(),context);
+
+        List<Integer> years = new ArrayList<>();
+        for(Championship c: Variables.championships){
+            years.add(c.getYear());
+        }
+
+        adapter = new Year_Adapter(getActivity(),context,years);
         recyclerView.setAdapter(adapter);
         recyclerView.smoothScrollToPosition((int)(adapter.getItemCount()/2));
         return view;

@@ -85,6 +85,15 @@ public class Schedule extends Fragment {
                 }
             }
         }
+        /*
+        List<Race> races = Variables.championships.get(Variables.championships.size()-1).getRaces();
+        for(int i=0 ; i<Variables.championships.size(); i++){
+            if(Variables.championships.get(i).getYear()==Variables.selected_year) {
+                races = Variables.championships.get(i).getRaces();
+                break;
+            }
+        }
+        */
         /* year -> pop up textview e quando escolher o ano cria um novo adapter com as corridas desse ano*/
         adapter = new MyAdapter(getActivity(),context);
         recyclerView.setAdapter(adapter);
@@ -130,6 +139,8 @@ public class Schedule extends Fragment {
 
             @Override
             public boolean onQueryTextChange(String newText) {
+                //...
+
                 adapter.getFilter().filter(newText);
                 return false;
             }
