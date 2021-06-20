@@ -12,6 +12,49 @@
     tools:context=".Team">
 
 
+    <TextView
+        android:id="@+id/textPoints"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="points"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textTeam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.89"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgTeam"
+        app:layout_constraintVertical_bias="0.06999999" />
+
+    <TextView
+        android:id="@+id/textStandings"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="std"
+        android:textSize="60sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/textTeam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.21"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imgTeam"
+        app:layout_constraintVertical_bias="0.72" />
+
+    <TextView
+        android:id="@+id/textView27"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#000000"
+        android:text="PTS"
+        android:textColor="#FBF7F7"
+        android:textSize="24sp"
+        app:layout_constraintBottom_toTopOf="@+id/textTeam"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.9"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textPoints"
+        app:layout_constraintVertical_bias="0.78" />
+
     <ImageView
         android:id="@+id/imgTeam"
         android:layout_width="150dp"
@@ -64,8 +107,11 @@
         tools:src="@tools:sample/avatars" />
 
     <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_width="wrap_content">
+        tools:layout_editor_absoluteX="0dp"
+        tools:layout_editor_absoluteY="0dp">
 
         <CheckBox
             android:id="@+id/favs_button"
@@ -74,15 +120,16 @@
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentRight="true"
+            android:layout_centerHorizontal="true"
             android:layout_marginStart="300dp"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="239dp"
             android:layout_marginEnd="192dp"
             android:layout_marginRight="192dp"
             android:layout_marginBottom="182dp"
-            android:layout_centerHorizontal="true"
             android:background="@color/white"
             android:button="@drawable/favorites" />
+
     </RelativeLayout>
 
     <TextView

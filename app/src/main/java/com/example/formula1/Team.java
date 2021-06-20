@@ -22,6 +22,8 @@ public class Team extends Fragment {
     private static String s;
     private static String name1;
     private static String name2;
+    private static String stand;
+    private static String points;
     private static int img;
     private static int imgp1;
     private static int imgp2;
@@ -31,14 +33,18 @@ public class Team extends Fragment {
     private static TextView mainS;
     private static TextView na1;
     private static TextView na2;
+    private static TextView st;
+    private static TextView pt;
 
-    public Team(String s, int img, int imgp1, int imgp2, String name1, String name2) {
+    public Team(String s, int img, int imgp1, int imgp2, String name1, String name2, String stand, String points) {
         this.s=s;
         this.img=img;
         this.imgp1=imgp1;
         this.imgp2=imgp2;
         this.name1=name1;
         this.name2=name2;
+        this.stand=stand;
+        this.points=points;
     }
 
 
@@ -54,6 +60,8 @@ public class Team extends Fragment {
         mainS.setText(s);
         na1.setText(name1);
         na2.setText(name2);
+        st.setText(stand);
+        pt.setText(points);
     }
 
     @Override
@@ -68,6 +76,8 @@ public class Team extends Fragment {
         mainS=(TextView) view.findViewById(R.id.textTeam);
         na1=(TextView) view.findViewById(R.id.namePilot1);
         na2=(TextView) view.findViewById(R.id.namePilot2);
+        st=(TextView) view.findViewById(R.id.textStandings);
+        pt=(TextView) view.findViewById(R.id.textPoints);
         setData();
         return view;
     }
